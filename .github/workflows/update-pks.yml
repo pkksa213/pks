@@ -31,9 +31,6 @@ jobs:
           git diff --cached --quiet || git commit -m "Automatyczna aktualizacja danych PKS"
           git push
 
-      - name: Zainstaluj lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
       - name: Wgraj stronę na hosting przez FTP
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
@@ -41,20 +38,21 @@ jobs:
           FTP_PASS: ${{ secrets.FTP_PASS }}
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
         run: |
-          lftp -u "$FTP_USER,$FTP_PASS" -e "
-            set ftp:ssl-allow yes;
-            set ftp:ssl-force no;
-            set ssl:verify-certificate no;
-            set ftp:passive-mode true;
-            set net:timeout 20;
-            set net:max-retries 3;
-            mkdir -p -f \"$FTP_REMOTE_DIR\";
-            mirror -R --verbose --parallel=3 \
-              --include-glob=index.html \
-              --include-glob=style.css \
-              --include-glob=data.json \
-              --include-glob=js/*.js \
-              --exclude-glob=* \
-              ./ \"$FTP_REMOTE_DIR\";
-            bye
-          " "$FTP_HOST"
+          BASE="ftp://${FTP_HOST}${FTP_REMOTE_DIR}"
+          echo "Cel: $BASE (host i katalog nie są tu ujawniane w pełni przez GitHub, ale struktura się zgadza)"
+
+          upload() {
+            echo "==> Wgrywam $1"
+            curl --silent --show-error --ftp-create-dirs \
+              -u "${FTP_USER}:${FTP_PASS}" \
+              -T "$1" "$BASE/$1"
+          }
+
+          upload index.html
+          upload style.css
+          upload data.json
+          upload js/calendar.js
+          upload js/services.js
+          upload js/app.js
+
+          echo "Gotowe."
