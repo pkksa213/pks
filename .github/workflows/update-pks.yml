@@ -34,8 +34,8 @@ jobs:
       - name: Zainstaluj lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-       - name: Wgraj stronę na hosting przez FTP
-         env:
+      - name: Wgraj stronę na hosting przez FTP
+        env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
