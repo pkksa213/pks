@@ -45,6 +45,9 @@ jobs:
             set ftp:ssl-allow yes;
             set ftp:ssl-force no;
             set ssl:verify-certificate no;
+            set ftp:passive-mode true;
+            set net:timeout 20;
+            set net:max-retries 3;
             mkdir -p -f \"$FTP_REMOTE_DIR\";
             mirror -R --verbose --parallel=3 \
               --include-glob=index.html \
