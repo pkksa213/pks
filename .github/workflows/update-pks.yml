@@ -34,6 +34,17 @@ jobs:
       - name: Zainstaluj lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      - name: Debug - sprawdź długość sekretów FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: |
+          echo "Długość FTP_HOST: ${#FTP_HOST}"
+          echo "Długość FTP_USER: ${#FTP_USER}"
+          echo "Długość FTP_PASS: ${#FTP_PASS}"
+          echo "Długość FTP_REMOTE_DIR: ${#FTP_REMOTE_DIR}"
       - name: Wgraj stronę na hosting przez FTP
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
