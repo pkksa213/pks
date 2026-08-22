@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Raniżów ⇄ Rzeszów — rozkład jazdy</title>
+<meta name="description" content="Rozkład jazdy PKS Rzeszów i Ekspres Bus na trasie Raniżów Rynek – Rzeszów, na wybrany dzień.">
+<meta name="theme-color" content="#f6f1e6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <svg class="route-mark" viewBox="0 0 220 28" aria-hidden="true">
+    <line x1="14" y1="14" x2="206" y2="14" stroke="currentColor" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+    <circle cx="14" cy="14" r="7" fill="var(--paper)" stroke="currentColor" stroke-width="2.5"/>
+    <circle cx="206" cy="14" r="7" fill="currentColor"/>
+  </svg>
+  <h1>Raniżów <span class="sep">⇄</span> Rzeszów</h1>
+  <p class="tagline">Rozkład jazdy · PKS Rzeszów i Ekspres Bus</p>
+</header>
+
+<main>
+
+  <section class="date-nav" aria-label="Wybór daty">
+    <button id="prev-day" class="nav-arrow" aria-label="Poprzedni dzień">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <label class="date-display" for="date-picker">
+      <span id="date-label">—</span>
+      <input type="date" id="date-picker">
+    </label>
+
+    <button id="next-day" class="nav-arrow" aria-label="Następny dzień">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </section>
+
+  <button id="today-btn" class="today-btn">Dziś</button>
+
+  <div class="direction-switch" role="tablist" aria-label="Kierunek">
+    <button class="dir-btn" data-direction="ranizow_rzeszow" role="tab"></button>
+    <button class="dir-btn" data-direction="rzeszow_ranizow" role="tab"></button>
+  </div>
+
+  <p id="placeholder-note" class="notice" hidden>
+    Dane PKS na tej stronie to na razie przykład — czekają na pierwsze automatyczne pobranie z oficjalnego rozkładu GTFS. Dane Ekspres Bus są już docelowe.
+  </p>
+
+  <p id="load-error" class="notice notice--error" hidden>
+    Nie udało się wczytać rozkładu. Odśwież stronę za chwilę.
+  </p>
+
+  <ul id="trip-list" class="trip-list" aria-live="polite"></ul>
+
+</main>
+
+<footer class="site-footer">
+  <p>Rozkład planowy, bez śledzenia pojazdów na żywo. Dane mogą się zmienić — sprawdzaj u przewoźnika w razie wątpliwości.</p>
+</footer>
+
+<script src="js/calendar.js"></script>
+<script src="js/services.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
