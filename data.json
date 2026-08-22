@@ -3,17 +3,21 @@
     "route": "Raniżów, Rynek ↔ Rzeszów",
     "ekspresBusSource": "Tabliczka przystankowa Ekspres Bus, Raniżów — rozkład ważny od 2026-08-12",
     "ekspresBusUpdated": "2026-08-20",
-    "pksDataStatus": "placeholder",
-    "pksNote": "To są przykładowe dane demonstracyjne (kilka kursów linii 311 i 314), żeby strona działała od razu. Po pierwszym uruchomieniu automatu GTFS (scripts/update_pks_gtfs.py przez GitHub Actions) ta sekcja zostanie w całości zastąpiona pełnymi, dokładnymi danymi z oficjalnego pliku GTFS PKS.",
-    "pksLastUpdated": null
+    "pksDataStatus": "live",
+    "pksNote": "Dane pobrane automatycznie z oficjalnego pliku GTFS PKS (mpkrzeszow.pl).",
+    "pksLastUpdated": "2026-08-22T12:15:15Z"
   },
-
   "stops": {
-    "ranizow_rynek":  { "name": "Raniżów, Rynek" },
-    "rzeszow_da":      { "name": "Rzeszów, Dworzec Główny (D.A.)" },
-    "rzeszow_lokalny": { "name": "Rzeszów, Dworzec Lokalny" }
+    "ranizow_rynek": {
+      "name": "Raniżów, Rynek"
+    },
+    "rzeszow_da": {
+      "name": "Rzeszów, Dworzec Główny (D.A.)"
+    },
+    "rzeszow_lokalny": {
+      "name": "Rzeszów, Dworzec Lokalny"
+    }
   },
-
   "carriers": {
     "pks": {
       "name": "PKS Rzeszów",
@@ -26,12 +30,19 @@
       "color": "#b5732a"
     }
   },
-
   "services": {
     "eb_D": {
       "label": "dni robocze (pon.–pt.), oprócz świąt",
       "type": "weekly",
-      "days": [1, 1, 1, 1, 1, 0, 0],
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
       "startDate": "2026-08-12",
       "excludeHolidays": true
     },
@@ -45,25 +56,50 @@
       "type": "school_break_daily",
       "startDate": "2026-08-12"
     },
-
     "pks_D": {
       "label": "dni robocze (pon.–pt.), oprócz świąt",
       "type": "weekly",
-      "days": [1, 1, 1, 1, 1, 0, 0],
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
       "excludeHolidays": true
     },
     "pks_6s": {
       "label": "soboty (nie w święta ustawowo wolne)",
       "type": "weekly",
-      "days": [0, 0, 0, 0, 0, 1, 0],
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
       "excludeHolidays": true
     },
     "pks_6s_T": {
       "label": "soboty (nie w święta, nie w Wielką Sobotę)",
       "type": "weekly",
-      "days": [0, 0, 0, 0, 0, 1, 0],
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
       "excludeHolidays": true,
-      "removeSpecial": ["holySaturday"]
+      "removeSpecial": [
+        "holySaturday"
+      ]
     },
     "pks_plus": {
       "label": "niedziele i święta",
@@ -72,44 +108,1210 @@
     "pks_plus_b": {
       "label": "niedziele i święta (oprócz 1 stycznia, 1. dnia Świąt Wielkanocnych i 25 grudnia)",
       "type": "sunday_or_holiday",
-      "removeSpecial": ["jan1", "easterSunday", "dec25"]
+      "removeSpecial": [
+        "jan1",
+        "easterSunday",
+        "dec25"
+      ]
+    },
+    "pks_gtfs_PS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-06-26"
+        ],
+        "remove": []
+      }
+    },
+    "pks_gtfs_SS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-06-27",
+          "2026-07-04",
+          "2026-07-11",
+          "2026-07-18",
+          "2026-07-25",
+          "2026-08-01",
+          "2026-08-08",
+          "2026-08-22",
+          "2026-08-29"
+        ],
+        "remove": []
+      }
+    },
+    "pks_gtfs_NS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-06-28",
+          "2026-07-05",
+          "2026-07-12",
+          "2026-07-19",
+          "2026-07-26",
+          "2026-08-02",
+          "2026-08-09",
+          "2026-08-15",
+          "2026-08-16",
+          "2026-08-23",
+          "2026-08-30"
+        ],
+        "remove": []
+      }
+    },
+    "pks_gtfs_RW": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-06-29",
+          "2026-06-30",
+          "2026-07-01",
+          "2026-07-02",
+          "2026-07-03",
+          "2026-07-06",
+          "2026-07-07",
+          "2026-07-08",
+          "2026-07-09",
+          "2026-07-10",
+          "2026-07-13",
+          "2026-07-14",
+          "2026-07-15",
+          "2026-07-16",
+          "2026-07-17",
+          "2026-07-20",
+          "2026-07-21",
+          "2026-07-22",
+          "2026-07-23",
+          "2026-07-24",
+          "2026-07-27",
+          "2026-07-28",
+          "2026-07-29",
+          "2026-07-30",
+          "2026-07-31",
+          "2026-08-03",
+          "2026-08-04",
+          "2026-08-05",
+          "2026-08-06",
+          "2026-08-07",
+          "2026-08-10",
+          "2026-08-11",
+          "2026-08-12",
+          "2026-08-13",
+          "2026-08-14",
+          "2026-08-17",
+          "2026-08-18",
+          "2026-08-19",
+          "2026-08-20",
+          "2026-08-21",
+          "2026-08-24",
+          "2026-08-25",
+          "2026-08-26",
+          "2026-08-27",
+          "2026-08-28",
+          "2026-08-31"
+        ],
+        "remove": []
+      }
     }
   },
-
   "trips": [
-    { "id": "eb1",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "06:02", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb2",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "06:44", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
-    { "id": "eb3",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "07:53", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb4",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "09:24", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
-    { "id": "eb5",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "09:30", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D", "eb_H"] },
-    { "id": "eb6",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "11:05", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb7",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "12:50", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb8",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "14:44", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb9",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "15:24", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
-    { "id": "eb10", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "16:40", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-    { "id": "eb11", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "17:21", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
-    { "id": "eb12", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "18:35", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
-
-    { "id": "eb13", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "06:55", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb14", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "07:35", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
-    { "id": "eb15", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "08:40", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb16", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "10:15", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb17", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "11:50", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb18", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "13:45", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb19", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "15:35", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb20", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "16:10", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
-    { "id": "eb21", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "17:25", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-    { "id": "eb22", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "18:05", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
-    { "id": "eb23", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "19:30", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
-
-    { "id": "pks1", "carrier": "pks", "line": "311", "direction": "ranizow_rzeszow", "time": "06:28", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_D"], "placeholder": true },
-    { "id": "pks2", "carrier": "pks", "line": "311", "direction": "ranizow_rzeszow", "time": "10:47", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_6s"], "placeholder": true },
-    { "id": "pks3", "carrier": "pks", "line": "314", "direction": "ranizow_rzeszow", "time": "13:15", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_D"], "placeholder": true },
-    { "id": "pks4", "carrier": "pks", "line": "314", "direction": "ranizow_rzeszow", "time": "16:05", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_plus_b"], "placeholder": true },
-
-    { "id": "pks5", "carrier": "pks", "line": "311", "direction": "rzeszow_ranizow", "time": "07:15", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_D"], "placeholder": true },
-    { "id": "pks6", "carrier": "pks", "line": "311", "direction": "rzeszow_ranizow", "time": "12:30", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_6s_T"], "placeholder": true },
-    { "id": "pks7", "carrier": "pks", "line": "314", "direction": "rzeszow_ranizow", "time": "14:50", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_D"], "placeholder": true },
-    { "id": "pks8", "carrier": "pks", "line": "314", "direction": "rzeszow_ranizow", "time": "18:40", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_plus"], "placeholder": true }
+    {
+      "id": "eb1",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "06:02",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb2",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "06:44",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb3",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "07:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb4",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "09:24",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb5",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "09:30",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D",
+        "eb_H"
+      ]
+    },
+    {
+      "id": "eb6",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "11:05",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb7",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "12:50",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb8",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "14:44",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb9",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "15:24",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb10",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "16:40",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb11",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "17:21",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb12",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "18:35",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb13",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "06:55",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb14",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "07:35",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb15",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "08:40",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb16",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "10:15",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb17",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "11:50",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb18",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "13:45",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb19",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "15:35",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb20",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "16:10",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb21",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "17:25",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "eb22",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "18:05",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_S"
+      ]
+    },
+    {
+      "id": "eb23",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "19:30",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ]
+    },
+    {
+      "id": "pks_gtfs_1",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "04:57",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_2",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "04:57",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_3",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "05:45",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "05:45",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_5",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:08",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_6",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:08",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_8",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_9",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "11:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_10",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "11:55",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_11",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "13:35",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_12",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "13:35",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_13",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "14:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_14",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "14:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_15",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "14:48",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_16",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "14:48",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_17",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:39",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_18",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:39",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_19",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "15:55",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_20",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "15:55",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_21",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:45",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_22",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:45",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_23",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "17:10",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_24",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "17:10",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_25",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "18:15",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_26",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "18:15",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_27",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "19:29",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_28",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "19:29",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_29",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "20:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_30",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "20:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_31",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "04:57",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_32",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "06:30",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_33",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "07:25",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_34",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "07:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_35",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "08:40",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_36",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "10:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_37",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "11:22",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_38",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "13:50",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_39",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:08",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_40",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_41",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "17:33",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_42",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "17:35",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_43",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "18:25",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_44",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "18:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_45",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "19:37",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_46",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "20:40",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_47",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "07:40",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_48",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "09:30",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_49",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "10:48",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_50",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "12:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_51",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "12:55",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_52",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "14:15",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_53",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:25",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_54",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_55",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "05:23",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_56",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "05:23",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_57",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "06:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_58",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "06:20",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_59",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "07:57",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_60",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "07:57",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_61",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "12:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_62",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "12:00",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_63",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "13:37",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_64",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "13:37",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_da",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    },
+    {
+      "id": "pks_gtfs_65",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "15:30",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_66",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "15:30",
+      "fromStop": "rzeszow_da",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "pks_gtfs_RW"
+      ]
+    }
   ]
 }
