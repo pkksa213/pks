@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "route": "Raniżów, Rynek ↔ Rzeszów",
+    "ekspresBusSource": "Tabliczka przystankowa Ekspres Bus, Raniżów — rozkład ważny od 2026-08-12",
+    "ekspresBusUpdated": "2026-08-20",
+    "pksDataStatus": "placeholder",
+    "pksNote": "To są przykładowe dane demonstracyjne (kilka kursów linii 311 i 314), żeby strona działała od razu. Po pierwszym uruchomieniu automatu GTFS (scripts/update_pks_gtfs.py przez GitHub Actions) ta sekcja zostanie w całości zastąpiona pełnymi, dokładnymi danymi z oficjalnego pliku GTFS PKS.",
+    "pksLastUpdated": null
+  },
+
+  "stops": {
+    "ranizow_rynek":  { "name": "Raniżów, Rynek" },
+    "rzeszow_da":      { "name": "Rzeszów, Dworzec Główny (D.A.)" },
+    "rzeszow_lokalny": { "name": "Rzeszów, Dworzec Lokalny" }
+  },
+
+  "carriers": {
+    "pks": {
+      "name": "PKS Rzeszów",
+      "icon": "bus",
+      "color": "#1d4a6e"
+    },
+    "ekspresbus": {
+      "name": "Ekspres Bus",
+      "icon": "loop",
+      "color": "#b5732a"
+    }
+  },
+
+  "services": {
+    "eb_D": {
+      "label": "dni robocze (pon.–pt.), oprócz świąt",
+      "type": "weekly",
+      "days": [1, 1, 1, 1, 1, 0, 0],
+      "startDate": "2026-08-12",
+      "excludeHolidays": true
+    },
+    "eb_S": {
+      "label": "dni nauki szkolnej",
+      "type": "school_days",
+      "startDate": "2026-08-12"
+    },
+    "eb_H": {
+      "label": "wakacje, ferie i przerwy świąteczne (kursuje codziennie)",
+      "type": "school_break_daily",
+      "startDate": "2026-08-12"
+    },
+
+    "pks_D": {
+      "label": "dni robocze (pon.–pt.), oprócz świąt",
+      "type": "weekly",
+      "days": [1, 1, 1, 1, 1, 0, 0],
+      "excludeHolidays": true
+    },
+    "pks_6s": {
+      "label": "soboty (nie w święta ustawowo wolne)",
+      "type": "weekly",
+      "days": [0, 0, 0, 0, 0, 1, 0],
+      "excludeHolidays": true
+    },
+    "pks_6s_T": {
+      "label": "soboty (nie w święta, nie w Wielką Sobotę)",
+      "type": "weekly",
+      "days": [0, 0, 0, 0, 0, 1, 0],
+      "excludeHolidays": true,
+      "removeSpecial": ["holySaturday"]
+    },
+    "pks_plus": {
+      "label": "niedziele i święta",
+      "type": "sunday_or_holiday"
+    },
+    "pks_plus_b": {
+      "label": "niedziele i święta (oprócz 1 stycznia, 1. dnia Świąt Wielkanocnych i 25 grudnia)",
+      "type": "sunday_or_holiday",
+      "removeSpecial": ["jan1", "easterSunday", "dec25"]
+    }
+  },
+
+  "trips": [
+    { "id": "eb1",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "06:02", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb2",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "06:44", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
+    { "id": "eb3",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "07:53", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb4",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "09:24", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
+    { "id": "eb5",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "09:30", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D", "eb_H"] },
+    { "id": "eb6",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "11:05", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb7",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "12:50", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb8",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "14:44", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb9",  "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "15:24", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
+    { "id": "eb10", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "16:40", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+    { "id": "eb11", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "17:21", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_S"] },
+    { "id": "eb12", "carrier": "ekspresbus", "direction": "ranizow_rzeszow", "time": "18:35", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny", "serviceIds": ["eb_D"] },
+
+    { "id": "eb13", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "06:55", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb14", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "07:35", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
+    { "id": "eb15", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "08:40", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb16", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "10:15", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb17", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "11:50", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb18", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "13:45", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb19", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "15:35", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb20", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "16:10", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
+    { "id": "eb21", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "17:25", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+    { "id": "eb22", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "18:05", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_S"] },
+    { "id": "eb23", "carrier": "ekspresbus", "direction": "rzeszow_ranizow", "time": "19:30", "fromStop": "rzeszow_lokalny", "toStop": "ranizow_rynek", "serviceIds": ["eb_D"] },
+
+    { "id": "pks1", "carrier": "pks", "line": "311", "direction": "ranizow_rzeszow", "time": "06:28", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_D"], "placeholder": true },
+    { "id": "pks2", "carrier": "pks", "line": "311", "direction": "ranizow_rzeszow", "time": "10:47", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_6s"], "placeholder": true },
+    { "id": "pks3", "carrier": "pks", "line": "314", "direction": "ranizow_rzeszow", "time": "13:15", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_D"], "placeholder": true },
+    { "id": "pks4", "carrier": "pks", "line": "314", "direction": "ranizow_rzeszow", "time": "16:05", "fromStop": "ranizow_rynek", "toStop": "rzeszow_da", "serviceIds": ["pks_plus_b"], "placeholder": true },
+
+    { "id": "pks5", "carrier": "pks", "line": "311", "direction": "rzeszow_ranizow", "time": "07:15", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_D"], "placeholder": true },
+    { "id": "pks6", "carrier": "pks", "line": "311", "direction": "rzeszow_ranizow", "time": "12:30", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_6s_T"], "placeholder": true },
+    { "id": "pks7", "carrier": "pks", "line": "314", "direction": "rzeszow_ranizow", "time": "14:50", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_D"], "placeholder": true },
+    { "id": "pks8", "carrier": "pks", "line": "314", "direction": "rzeszow_ranizow", "time": "18:40", "fromStop": "rzeszow_da", "toStop": "ranizow_rynek", "serviceIds": ["pks_plus"], "placeholder": true }
+  ]
+}
