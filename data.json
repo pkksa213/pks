@@ -5,7 +5,7 @@
     "ekspresBusUpdated": "2026-08-20",
     "pksDataStatus": "live",
     "pksNote": "GTFS uzupełniony oficjalnymi oznaczeniami kursowania i czasami postojów PKS.",
-    "pksLastUpdated": "2026-11-12T13:19:46Z",
+    "pksLastUpdated": "2026-11-12T13:27:07Z",
     "schemaVersion": 2,
     "pksSource": "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip",
     "pksValidFrom": "2026-11-07",
@@ -163,6 +163,40 @@
         "dec25"
       ]
     },
+    "pks_official_7755": {
+      "type": "weekly",
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "excludeHolidays": true,
+      "label": "Poniedziałek–piątek, bez świąt",
+      "startDate": "2026-11-07",
+      "endDate": "2026-12-31",
+      "source": "https://pks.rzeszow.pl/"
+    },
+    "pks_official_7711": {
+      "type": "weekly",
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "excludeHolidays": true,
+      "label": "Poniedziałek–piątek, bez świąt",
+      "startDate": "2026-11-07",
+      "endDate": "2026-12-31",
+      "source": "https://pks.rzeszow.pl/"
+    },
     "pks_gtfs_SS": {
       "label": "PKS wg rozkładu GTFS — wyjątki",
       "type": "weekly",
@@ -287,40 +321,6 @@
         ],
         "remove": []
       }
-    },
-    "pks_official_7755": {
-      "type": "weekly",
-      "days": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0
-      ],
-      "excludeHolidays": true,
-      "label": "Poniedziałek–piątek, bez świąt",
-      "startDate": "2026-11-07",
-      "endDate": "2026-12-31",
-      "source": "https://pks.rzeszow.pl/"
-    },
-    "pks_official_7711": {
-      "type": "weekly",
-      "days": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        0,
-        0
-      ],
-      "excludeHolidays": true,
-      "label": "Poniedziałek–piątek, bez świąt",
-      "startDate": "2026-11-07",
-      "endDate": "2026-12-31",
-      "source": "https://pks.rzeszow.pl/"
     }
   },
   "trips": [
