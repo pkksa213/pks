@@ -1,0 +1,26 @@
+{
+  "name": "ranizow-rozklad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rozkład Raniżów – Rzeszów z przesiadką w Głogowie Małopolskim",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1 --directory dist",
+    "test": "node --test tests/*.test.cjs && python3 -m unittest discover -s tests -p 'test_*.py'",
+    "sync": "node scripts/build.mjs --native && cap sync",
+    "android": "npm run sync && cap open android",
+    "ios": "npm run sync && cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.6.0",
+    "@capacitor/core": "8.6.0",
+    "@capacitor/ios": "8.6.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.6.0",
+    "esbuild": "0.25.12"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

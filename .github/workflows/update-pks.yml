@@ -1,58 +1,70 @@
 name: Aktualizuj dane PKS i wgraj stronę
-
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - 'README.md'
   schedule:
     - cron: '15 3 * * *'
-  workflow_dispatch: {}   # <- to jest przycisk "Run workflow" = "odśwież teraz"
-
+  workflow_dispatch: {}
 permissions:
   contents: write
-
+concurrency:
+  group: schedule-update
+  cancel-in-progress: false
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Pobierz repozytorium
-        uses: actions/checkout@v4
-
-      - name: Ustaw Pythona
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Pobierz aktualny rozkład PKS (GTFS) i zaktualizuj data.json
-        run: python3 scripts/update_pks_gtfs.py
-
-      - name: Zapisz zmiany w repozytorium (historia rozkładu PKS)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Pobierz rozkład i zbuduj aplikację web
+        run: |
+          php -l schedule.php
+          python3 scripts/update_pks_gtfs.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          npm run build
+      - name: Zachowaj historię danych
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
           git diff --cached --quiet || git commit -m "Automatyczna aktualizacja danych PKS"
           git push
-
-      - name: Wgraj stronę na hosting przez FTP
+      - name: Wgraj kompletny katalog dist na hosting
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        shell: bash
         run: |
-          BASE="ftp://${FTP_HOST}${FTP_REMOTE_DIR}"
-          echo "Cel: $BASE (host i katalog nie są tu ujawniane w pełni przez GitHub, ale struktura się zgadza)"
-
-          upload() {
-            echo "==> Wgrywam $1"
-            curl --silent --show-error --ftp-create-dirs \
+          set -euo pipefail
+          cd dist
+          while IFS= read -r -d '' file; do
+            relative="${file#./}"
+            curl --fail --silent --show-error --ftp-create-dirs \
               -u "${FTP_USER}:${FTP_PASS}" \
-              -T "$1" "$BASE/$1"
-          }
-
-          upload index.html
-          upload style.css
-          upload data.json
-          upload js/calendar.js
-          upload js/services.js
-          upload js/app.js
-
-          echo "Gotowe."
+              -T "$file" "ftp://${FTP_HOST}${FTP_REMOTE_DIR%/}/$relative"
+          done < <(find . -type f ! -name sw.js ! -name index.html -print0)
+          # Upload the entry point and worker last, after all their dependencies.
+          for file in index.html sw.js; do
+            curl --fail --silent --show-error --ftp-create-dirs \
+              -u "${FTP_USER}:${FTP_PASS}" \
+              -T "$file" "ftp://${FTP_HOST}${FTP_REMOTE_DIR%/}/$file"
+          done
+          # Verify the uploaded bytes without printing FTP credentials.
+          for file in index.html data.json schedule.php downloads/ranizow-1.0.0.apk; do
+            curl --fail --silent --show-error \
+              -u "${FTP_USER}:${FTP_PASS}" \
+              "ftp://${FTP_HOST}${FTP_REMOTE_DIR%/}/$file" -o /tmp/ranizow-upload-check
+            cmp "$file" /tmp/ranizow-upload-check
+          done

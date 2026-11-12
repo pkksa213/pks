@@ -1,130 +1,95 @@
-# Raniżów ⇄ Rzeszów — rozkład jazdy
+# Raniżów · rozkład jazdy
 
-Statyczna strona łącząca rozkłady PKS Rzeszów (linie 311, 314) i Ekspres Bus
-na trasie Raniżów, Rynek ↔ Rzeszów. Bez bazy danych, bez logowania — jeden
-plik `data.json` i garść JS-a.
+Aplikacja na Androida, iOS i przeglądarkę (PWA), rozwijająca pierwotną stronę HTML/JS. Wspólny kod używa istniejących modułów `Calendar` i `Services` oraz importera GTFS. Bez kont, reklam, lokalizacji i bazy danych.
 
-## Jak to jest zbudowane
+- Główny widok: **Raniżów ↔ Rzeszów**.
+- Raniżów → Rzeszów: bezpośrednio lub z jedną przesiadką w Głogowie Małopolskim.
+- Rzeszów → Raniżów: tylko połączenia bezpośrednie.
+- Dodatkowo: **Raniżów → Głogów** oraz Głogów ↔ Rzeszów.
+- Zgodnie z korektą właściciela aplikacja **nie oferuje Głogów → Raniżów**, nawet jeśli takie odcinki występują w pliku GTFS. Importer usuwa je przy każdej aktualizacji.
+- Kurs Ekspres Bus **18:05 jest usunięty** i nie wraca po imporcie.
+- Ostatni rozkład i ustawienia trasy są zapamiętywane lokalnie; aplikacja działa offline.
 
-```
-index.html              strona
-style.css                wygląd
-js/calendar.js           święta, rok szkolny, wakacje/ferie (aktualizować raz w roku!)
-js/services.js           zamienia "usługę" (np. "dni nauki szkolnej") na TAK/NIE dla daty
-js/app.js                nawigacja po datach, renderowanie listy kursów
-data.json                WSZYSTKIE dane: przystanki, przewoźnicy, kursy, kalendarze
-scripts/update_pks_gtfs.py       pobiera GTFS PKS i podmienia sekcję PKS w data.json
-.github/workflows/update-pks.yml automat: harmonogram + ręczny przycisk "odśwież teraz"
-```
+## Uruchomienie
 
-Zero bazy danych — przy tej skali (dwie linie PKS + jeden przystanek Ekspres
-Bus) jeden plik JSON w zupełności wystarcza i jest dużo prostszy w
-utrzymaniu niż serwer + baza.
+Wymagane: Node.js 22+ i Python 3.12. Instalacja jest jednorazowa:
 
----
-
-## 1. Pierwsze wdrożenie (jednorazowo)
-
-1. **Załóż repozytorium na GitHub** (może być prywatne) i wgraj do niego
-   całą zawartość tego folderu.
-
-2. **Dodaj sekrety FTP**, żeby automat mógł wgrywać stronę na Twój hosting:
-   w repozytorium wejdź w **Settings → Secrets and variables → Actions →
-   New repository secret** i dodaj cztery sekrety:
-
-   | Nazwa | Co wpisać |
-   |---|---|
-   | `FTP_HOST` | adres serwera FTP (np. `ftp.twojadomena.pl`) |
-   | `FTP_USER` | login FTP |
-   | `FTP_PASS` | hasło FTP |
-   | `FTP_REMOTE_DIR` | katalog na hostingu, gdzie ma trafić strona (np. `/public_html` albo `/` — zależy od hostingu) |
-
-   Te dane nigdy nie trafiają do mnie ani do kodu — GitHub przechowuje je
-   zaszyfrowane i podstawia tylko w trakcie działania automatu.
-
-3. **Uruchom automat pierwszy raz ręcznie**, żeby od razu dociągnąć
-   prawdziwe dane PKS (zamiast przykładowych) i wgrać stronę:
-   zakładka **Actions** → workflow „Aktualizuj dane PKS i wgraj stronę”
-   → przycisk **Run workflow**.
-
-   To jest dokładnie Twój „przycisk odśwież teraz” — możesz go kliknąć w
-   dowolnym momencie w przyszłości, kiedy będziesz chciał wymusić
-   aktualizację PKS od razu, zamiast czekać na nocny harmonogram
-   (domyślnie: co noc ok. 4–5 rano czasu polskiego — do zmiany w pliku
-   `.github/workflows/update-pks.yml`, linia z `cron:`).
-
-4. Sprawdź stronę pod swoją domeną. Jeśli baner „dane PKS to na razie
-   przykład” zniknął — import się udał.
-
-### Jeśli automat nie znajdzie linii/przystanków (sekcja skryptu do dostrojenia)
-
-`scripts/update_pks_gtfs.py` dopasowuje przystanki po fragmencie nazwy
-(`STOP_MATCHERS`) i linie po numerze (`TARGET_LINES`). W logach zakładki
-**Actions** zobaczysz, ile linii i przystanków znalazł. Jeśli realny plik
-GTFS nazywa je inaczej niż założyliśmy, popraw te dwie stałe na górze
-skryptu — reszta zadziała bez zmian.
-
----
-
-## 2. Ręczna aktualizacja rozkładu Ekspres Bus
-
-Dane Ekspres Bus **nie** są nigdy dotykane przez automat PKS — edytujesz
-je wyłącznie ręcznie w `data.json`, sekcja `"trips"`, wpisy z
-`"carrier": "ekspresbus"`.
-
-Przykład jednego kursu:
-
-```json
-{ "id": "eb1", "carrier": "ekspresbus", "direction": "ranizow_rzeszow",
-  "time": "06:02", "fromStop": "ranizow_rynek", "toStop": "rzeszow_lokalny",
-  "serviceIds": ["eb_D"] }
+```sh
+npm ci
+npm run build
+npm run dev
 ```
 
-- `direction`: `"ranizow_rzeszow"` albo `"rzeszow_ranizow"`
-- `serviceIds`: lista jednej lub więcej „usług" z sekcji `"services"` —
-  kurs jedzie, jeśli **którakolwiek** z nich pasuje na wybraną datę
-  (tak działał np. kod „DH" na tabliczce: dni robocze **lub** ferie/wakacje)
-- gotowe usługi Ekspres Bus już czekają: `eb_D` (dni robocze), `eb_S`
-  (dni nauki szkolnej), `eb_H` (wakacje/ferie/przerwy, codziennie)
+Serwer używa portu 8000 i katalogu `dist`. Źródła pozostają w katalogu głównym oraz `js/`; po zmianie ponów `npm run build`. Nie edytuj plików w `dist`.
 
-Żeby dodać nowy, niestandardowy warunek (np. „nie kursuje 24-26 grudnia"),
-dopisz nową usługę w sekcji `"services"` — wzór masz w usługach `pks_plus_b`
-czy `pks_6s_T`, które już pokazują, jak wykluczyć konkretne dni.
+```sh
+npm test                         # testy planera, kalendarzy i importera
+npm run sync                     # build + zasoby Android/iOS
+npm run android                  # otwarcie projektu w Android Studio
+npm run ios                      # otwarcie projektu w Xcode, wyłącznie macOS
+```
 
-Po edycji: zapisz plik i wgraj `data.json` na hosting przez FTP (tak jak
-zwykle). Strona wczyta go od razu przy następnym odświeżeniu.
+Android: JDK 21, Android SDK 36, Build Tools 36, Android Studio zgodne z Capacitor 8. iOS: macOS, Xcode 26+, konto Apple do podpisywania. Projekt iOS korzysta ze Swift Package Manager, bez CocoaPods.
 
----
+Obsługiwany zakres konfiguracji: **Android 7.0+ (API 24)** z Android System WebView **80+**, **iOS 15+**. `targetSdkVersion=36` jest wymaganiem publikacji, a nie minimalną wersją telefonu. Nie gwarantujemy działania na starszych systemach. Testy na fizycznych urządzeniach są osobnym etapem przed wydaniem.
 
-## 3. Coroczna konserwacja — WAŻNE
+## Dane i przesiadki
 
-Raz w roku, najlepiej w maju/czerwcu, gdy MEN ogłasza terminy na kolejny
-rok szkolny, otwórz `js/calendar.js` i dopisz kolejny obiekt do:
+```sh
+python3 scripts/update_pks_gtfs.py
+# Odtworzenie konkretnego pobranego pliku bez sieci:
+python3 scripts/update_pks_gtfs.py --gtfs-file /sciezka/latest.zip
+```
 
-- `SCHOOL_YEARS` — początek/koniec roku szkolnego, przerwy świąteczne,
-  ferie zimowe (**dla województwa podkarpackiego** — MEN ogłasza osobno
-  dla każdego województwa),
-- `SUMMER_BREAKS` — wakacje letnie (data końca roku szkolnego + 31 sierpnia).
+Źródło: <https://www.mpkrzeszow.pl/gtfs-pks/latest.zip>. Import obejmuje Raniżów Rynek, **Głogów Młp. Kolejowa I Centrum Przesiadkowe 01 (GTFS stop_id 597)** i Rzeszów D.A. Zachowuje dokładne nazwy stanowisk. Wszystkie linie w GTFS między węzłem a Rzeszowem mogą obsłużyć drugi odcinek, nie tylko 311 i 314.
 
-Na razie wpisany jest rok szkolny 2026/2027 (zweryfikowany w sierpniu
-2026) plus prowizoryczne wakacje 2027. Jeśli ktoś otworzy stronę z datą
-poza tym zakresem, dni „S" po prostu nigdy nie zostaną uznane za dni
-nauki szkolnej — więc pamiętaj o aktualizacji z wyprzedzeniem.
+Planer łączy różne kursy na **dokładnie tym samym przystanku**, sprawdza kalendarz obu odcinków, przyjazd pierwszego i odjazd drugiego. Nie proponuje wysiadania z autobusu jadącego już do celu. Domyślne minimum: 5 minut; maksymalne oczekiwanie: 45 minut. Użytkownik może wybrać minimum 10/15 i maksimum 30/90 minut. To połączenia wynikające z rozkładu, **nie gwarantowane skomunikowanie przez przewoźnika**. Brak danych o opóźnieniach. Nie dopisujemy godzin przyjazdu Ekspres Bus, których nie ma w źródle.
 
-Święta ustawowe (Nowy Rok, Wielkanoc, Boże Ciało itd.) liczą się same —
-nic nie trzeba tam poprawiać.
+Pobrany 12.11.2026 GTFS obejmuje 31.10–31.12.2026. Przykłady na 12.11:
 
----
+- Raniżów 08:42 → Głogów 09:05 (311); Głogów 09:44 → Rzeszów 10:15 (301), 39 minut oczekiwania.
+- Raniżów 10:35 → Głogów 10:58 (311); Głogów 12:13 → Rzeszów 12:46 (301), 75 minut oczekiwania — widoczny dopiero po wybraniu limitu 90 minut.
 
-## 4. Założenia i rzeczy do wiedzy
+Ważność jest odczytywana z GTFS. Po jej końcu aplikacja pokazuje ostrzeżenie i nie przenosi kursów PKS na niepotwierdzone daty. Ekspres Bus pozostaje źródłem ręcznym; edytuj jego wpisy w `data.json`. Kalendarz szkolny w `js/calendar.js` wymaga corocznej konserwacji.
 
-- **Kod „DH" i podobne łączone oznaczenia** są interpretowane jako „TAK,
-  jeśli którykolwiek z warunków jest spełniony" (logiczne LUB). Jeśli to
-  się gdzieś okaże niezgodne z rzeczywistością, daj znać, w którym kursie.
-- **Nazwa „Rzeszów D.A."** to oficjalna nazwa przystanku używana przez
-  PKS/MPK Rzeszów (Dworzec Autobusowy) — to ten sam przystanek, o którym
-  mówiłeś „Dworzec Główny".
-- Strona pokazuje wyłącznie **planowy rozkład**, bez śledzenia pojazdów.
-- Dane PKS pochodzą z oficjalnego pliku GTFS publikowanego przez MPK
-  Rzeszów pod `mpkrzeszow.pl/gtfs-pks/latest.zip` — ten sam plik, który
-  zasila oficjalne aplikacje.
+## Aktualizacje w aplikacji natywnej
+
+Paczka zawsze zawiera rozkład do pracy offline. Domyślny adres zapisany w `app.config.json` to **https://ranizowpksibus.free.nf/schedule.php**, na podstawie adresu podanego przez właściciela. Można go nadpisać przy kompilacji:
+
+```sh
+SCHEDULE_DATA_URL=https://TWOJA-DOMENA/schedule.php npm run sync
+```
+
+Powyższe polecenie jest przykładem nadpisania adresu. Bez zmiennej używany jest adres z `app.config.json`. Jawnie puste `SCHEDULE_DATA_URL` wyłącza zdalne pobieranie. Punkt `schedule.php` zwraca publiczny `data.json` w formacie `schemaVersion: 2` i ustawia `Access-Control-Allow-Origin: *`, aby Android i iOS mogły pobierać dane. Hosting musi obsługiwać PHP. Nie ma tam kont ani danych osobowych. Zabezpieczenia hostingu wymagające obsługi JavaScript lub ciasteczek mogą nadal uniemożliwiać dostęp z aplikacji; działanie zdalnej aktualizacji trzeba sprawdzić na telefonie. Brak skonfigurowanego adresu oznacza korzystanie z danych dołączonych do paczki. Przy niedostępnym serwerze używany jest ostatni zapisany rozkład z datą ważności. Adres jest ustawieniem kompilacji, nie sekretem.
+
+PWA aktualizuje `data.json` ze swojego hostingu. Service worker przechowuje powłokę aplikacji; wersja cache jest hashem zbudowanych zasobów. Wymagany HTTPS dla instalacji/offline poza lokalnym developmentem.
+
+## Wdrożenie i testy
+
+Workflow `update-pks.yml` pobiera GTFS, zapisuje dane w Git, buduje `dist` i wgrywa **całą zawartość `dist`** przez dotychczasowy FTP. Używa istniejących sekretów GitHub Actions: `FTP_HOST`, `FTP_USER`, `FTP_PASS`, `FTP_REMOTE_DIR`. Nie wkładaj ich do aplikacji. Zdalne wdrożenie nie zostało uruchomione w ramach zmian.
+
+Workflow `android.yml` uruchamiany ręcznie tworzy testowy APK jako artefakt GitHub Actions. Zwykły `check.yml` uruchamia testy i synchronizację obu projektów.
+
+Testy z `tests/fixtures/schedule-2026-11-12.json` sprawdzają konkretny zweryfikowany rozkład, niezależnie od późniejszych zmian feedu. Testy importera korzystają z małych sztucznych plików GTFS. Test przeglądarkowy obejmuje nawigację, korektę tras, przesiadki, responsywność i **przeładowanie bez sieci**:
+
+```sh
+# Serwuj dist na porcie 8001 w osobnej sesji:
+python3 -m http.server 8001 --bind 127.0.0.1 --directory dist
+# W środowisku z Python Playwright i Chromium:
+mkdir -p artifacts
+APP_TEST_URL=http://127.0.0.1:8001 python3 tests/browser_smoke.py
+```
+
+Instalowanie APK i wersji iPhone bez sklepów: **[docs/PUBLIKACJA.md](docs/PUBLIKACJA.md)**.
+
+### Status połączenia z hostingiem
+
+12.11.2026 połączenia z tego środowiska do domeny `ranizowpksibus.free.nf` zakończyły się błędem połączenia upstream HTTP 503, a próba w Chromium błędem zaufania certyfikatu. Nie potwierdzono pobierania JSON ani CORS. Nie wyłączano weryfikacji TLS. Przed wydaniem wgraj nowy `dist` na hosting i sprawdź rzeczywiste pobieranie na Androidzie/iOS. Jeśli hosting wymaga przeglądarkowej weryfikacji lub nie dopuszcza zapytań aplikacji, przenieś publiczny plik JSON na hosting HTTPS obsługujący takie żądania i zmień `app.config.json`. Zwykła strona otwierana w Safari/Chrome nie dowodzi dostępności API dla aplikacji.
+
+## Pobieranie aplikacji ze strony
+
+Na stronie są przyciski **„Pobierz na Androida · APK”** i **„Zainstaluj na iPhonie”**. Android pobiera `downloads/ranizow-1.0.0.apk`, podpisany własnym kluczem wydania. iPhone instaluje PWA z Safari → Udostępnij → Do ekranu początkowego. Nie publikujemy aplikacji w sklepach. To wspólny kod, ale APK działa wyłącznie na Androidzie; iOS korzysta z wersji webowej.
+
+`npm run build` kopiuje pliki do pobrania do `dist/downloads`. `npm run sync` buduje zasoby natywne **bez APK w środku**, aby aplikacja nie zawierała własnego instalatora. Plik APK nie jest automatycznie pobierany przez service worker. Workflow wdraża po zmianie `main`, z harmonogramu lub ręcznie; po wgraniu porównuje bajty najważniejszych plików i APK przez FTP.
+
+APK w `downloads/` jest plikiem wydania, a nie plikiem debug. Klucz podpisujący i hasło znajdują się poza repozytorium w chronionym katalogu `/workspace/pks-signing`. Należy zachować ich bezpieczną kopię przed zmianą środowiska; ten sam klucz jest niezbędny do wydawania aktualizacji APK. Nie dodawaj ich do Git ani na hosting. Instalacja tej wersji po starszym debug APK może wymagać odinstalowania debug APK z powodu innego podpisu.

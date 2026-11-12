@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Raniżów · rozkład</string>
+    <string name="title_activity_main">Raniżów · rozkład</string>
+    <string name="package_name">pl.ranizow.rozklad</string>
+    <string name="custom_url_scheme">pl.ranizow.rozklad</string>
+</resources>

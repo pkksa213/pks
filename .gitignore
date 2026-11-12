@@ -1,0 +1,15 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+artifacts/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/**/build/
+*.jks
+*.keystore
+ios/App/Pods/
+ios/App/build/
+ios/**/xcuserdata/
+.DS_Store

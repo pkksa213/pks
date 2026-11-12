@@ -1,0 +1,4660 @@
+{
+  "meta": {
+    "route": "Raniżów ↔ Rzeszów · Głogów Małopolski",
+    "ekspresBusSource": "Tabliczka przystankowa Ekspres Bus, Raniżów — rozkład ważny od 2026-08-12",
+    "ekspresBusUpdated": "2026-08-20",
+    "pksDataStatus": "live",
+    "pksNote": "Oficjalny GTFS PKS. Przesiadki wyliczane z godzin; nie są gwarantowane przez przewoźnika.",
+    "pksLastUpdated": "2026-11-12T12:24:03Z",
+    "schemaVersion": 2,
+    "pksSource": "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip",
+    "pksValidFrom": "2026-10-31",
+    "pksValidUntil": "2026-12-31",
+    "transferStop": "pks_stop_597",
+    "ekspresBusWithdrawn": [
+      "18:05"
+    ],
+    "pksFeedSha256": "b5101c86f0f5900f8ad59e96e7581a69e24c8bd2810b31f4ec5ae205eb85ca2c"
+  },
+  "stops": {
+    "ranizow_rynek": {
+      "name": "Raniżów, Rynek",
+      "city": "ranizow"
+    },
+    "rzeszow_da": {
+      "name": "Rzeszów, Dworzec Główny (D.A.)",
+      "city": "rzeszow"
+    },
+    "rzeszow_lokalny": {
+      "name": "Rzeszów, Dworzec Lokalny",
+      "city": "rzeszow"
+    },
+    "pks_stop_63": {
+      "name": "Rzeszów D.A. 8",
+      "city": "rzeszow",
+      "lat": 50.0420817,
+      "lon": 22.0037329
+    },
+    "pks_stop_597": {
+      "name": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "city": "glogow",
+      "lat": 50.149155,
+      "lon": 21.957775
+    },
+    "pks_stop_57": {
+      "name": "Rzeszów D.A. 10",
+      "city": "rzeszow",
+      "lat": 50.0421064,
+      "lon": 22.0031106
+    },
+    "pks_stop_776": {
+      "name": "Raniżów Rynek 01",
+      "city": "ranizow",
+      "lat": 50.258658,
+      "lon": 21.9722
+    },
+    "pks_stop_777": {
+      "name": "Raniżów Rynek 02",
+      "city": "ranizow",
+      "lat": 50.258569,
+      "lon": 21.972203
+    }
+  },
+  "carriers": {
+    "pks": {
+      "name": "PKS Rzeszów",
+      "icon": "bus",
+      "color": "#1d4a6e"
+    },
+    "ekspresbus": {
+      "name": "Ekspres Bus",
+      "icon": "loop",
+      "color": "#b5732a"
+    }
+  },
+  "services": {
+    "eb_D": {
+      "label": "dni robocze (pon.–pt.), oprócz świąt",
+      "type": "weekly",
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "startDate": "2026-08-12",
+      "excludeHolidays": true
+    },
+    "eb_S": {
+      "label": "dni nauki szkolnej",
+      "type": "school_days",
+      "startDate": "2026-08-12"
+    },
+    "eb_H": {
+      "label": "wakacje, ferie i przerwy świąteczne (kursuje codziennie)",
+      "type": "school_break_daily",
+      "startDate": "2026-08-12"
+    },
+    "pks_D": {
+      "label": "dni robocze (pon.–pt.), oprócz świąt",
+      "type": "weekly",
+      "days": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "excludeHolidays": true
+    },
+    "pks_6s": {
+      "label": "soboty (nie w święta ustawowo wolne)",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "excludeHolidays": true
+    },
+    "pks_6s_T": {
+      "label": "soboty (nie w święta, nie w Wielką Sobotę)",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "excludeHolidays": true,
+      "removeSpecial": [
+        "holySaturday"
+      ]
+    },
+    "pks_plus": {
+      "label": "niedziele i święta",
+      "type": "sunday_or_holiday"
+    },
+    "pks_plus_b": {
+      "label": "niedziele i święta (oprócz 1 stycznia, 1. dnia Świąt Wielkanocnych i 25 grudnia)",
+      "type": "sunday_or_holiday",
+      "removeSpecial": [
+        "jan1",
+        "easterSunday",
+        "dec25"
+      ]
+    },
+    "pks_gtfs_SS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-10-31",
+          "2026-11-07",
+          "2026-11-14",
+          "2026-11-21",
+          "2026-11-28",
+          "2026-12-05",
+          "2026-12-12",
+          "2026-12-19",
+          "2026-12-26"
+        ],
+        "remove": []
+      }
+    },
+    "pks_gtfs_NS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-11-01",
+          "2026-11-08",
+          "2026-11-11",
+          "2026-11-15",
+          "2026-11-22",
+          "2026-11-29",
+          "2026-12-06",
+          "2026-12-13",
+          "2026-12-20",
+          "2026-12-27"
+        ],
+        "remove": []
+      }
+    },
+    "pks_gtfs_PS": {
+      "label": "PKS wg rozkładu GTFS — wyjątki",
+      "type": "weekly",
+      "days": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "startDate": "2000-01-01",
+      "endDate": "2100-01-01",
+      "excludeHolidays": false,
+      "exceptions": {
+        "add": [
+          "2026-11-02",
+          "2026-11-03",
+          "2026-11-04",
+          "2026-11-05",
+          "2026-11-06",
+          "2026-11-09",
+          "2026-11-10",
+          "2026-11-12",
+          "2026-11-13",
+          "2026-11-16",
+          "2026-11-17",
+          "2026-11-18",
+          "2026-11-19",
+          "2026-11-20",
+          "2026-11-23",
+          "2026-11-24",
+          "2026-11-25",
+          "2026-11-26",
+          "2026-11-27",
+          "2026-11-30",
+          "2026-12-01",
+          "2026-12-02",
+          "2026-12-03",
+          "2026-12-04",
+          "2026-12-07",
+          "2026-12-08",
+          "2026-12-09",
+          "2026-12-10",
+          "2026-12-11",
+          "2026-12-14",
+          "2026-12-15",
+          "2026-12-16",
+          "2026-12-17",
+          "2026-12-18",
+          "2026-12-21",
+          "2026-12-22",
+          "2026-12-23",
+          "2026-12-24",
+          "2026-12-25",
+          "2026-12-28",
+          "2026-12-29",
+          "2026-12-30",
+          "2026-12-31"
+        ],
+        "remove": []
+      }
+    }
+  },
+  "trips": [
+    {
+      "id": "eb1",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "06:02",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb2",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "06:44",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb3",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "07:53",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb4",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "09:24",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb5",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "09:30",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D",
+        "eb_H"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb6",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "11:05",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb7",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "12:50",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb8",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "14:44",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb9",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "15:24",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb10",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "16:40",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb11",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "17:21",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb12",
+      "carrier": "ekspresbus",
+      "direction": "ranizow_rzeszow",
+      "time": "18:35",
+      "fromStop": "ranizow_rynek",
+      "toStop": "rzeszow_lokalny",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "ranizow",
+      "toCity": "rzeszow"
+    },
+    {
+      "id": "eb13",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "06:55",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb14",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "07:35",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb15",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "08:40",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb16",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "10:15",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb17",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "11:50",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb18",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "13:45",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb19",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "15:35",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb20",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "16:10",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_S"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb21",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "17:25",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "eb23",
+      "carrier": "ekspresbus",
+      "direction": "rzeszow_ranizow",
+      "time": "19:30",
+      "fromStop": "rzeszow_lokalny",
+      "toStop": "ranizow_rynek",
+      "serviceIds": [
+        "eb_D"
+      ],
+      "fromCity": "rzeszow",
+      "toCity": "ranizow"
+    },
+    {
+      "id": "pks_gtfs_9792_63_597",
+      "gtfsTripId": "9792",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "05:20",
+      "arrivalTime": "05:46",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7802_63_597",
+      "gtfsTripId": "7802",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "05:50",
+      "arrivalTime": "06:14",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_9894_597_57",
+      "gtfsTripId": "9894",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "06:09",
+      "arrivalTime": "06:42",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7803_597_57",
+      "gtfsTripId": "7803",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "06:36",
+      "arrivalTime": "07:13",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7804_63_597",
+      "gtfsTripId": "7804",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "07:25",
+      "arrivalTime": "07:54",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7805_597_57",
+      "gtfsTripId": "7805",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "08:13",
+      "arrivalTime": "08:46",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7807_597_57",
+      "gtfsTripId": "7807",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "09:44",
+      "arrivalTime": "10:15",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7806_63_597",
+      "gtfsTripId": "7806",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "10:50",
+      "arrivalTime": "11:18",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7809_597_57",
+      "gtfsTripId": "7809",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "12:13",
+      "arrivalTime": "12:46",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7808_63_597",
+      "gtfsTripId": "7808",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "12:50",
+      "arrivalTime": "13:19",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7811_597_57",
+      "gtfsTripId": "7811",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "14:35",
+      "arrivalTime": "15:06",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7810_63_597",
+      "gtfsTripId": "7810",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "rzeszow_glogow",
+      "time": "14:45",
+      "arrivalTime": "15:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7813_597_57",
+      "gtfsTripId": "7813",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "15:39",
+      "arrivalTime": "16:09",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7817_597_57",
+      "gtfsTripId": "7817",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "18:08",
+      "arrivalTime": "18:37",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7819_597_57",
+      "gtfsTripId": "7819",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "18:47",
+      "arrivalTime": "19:14",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7821_597_57",
+      "gtfsTripId": "7821",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "19:49",
+      "arrivalTime": "20:17",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7823_597_57",
+      "gtfsTripId": "7823",
+      "carrier": "pks",
+      "line": "301",
+      "direction": "glogow_rzeszow",
+      "time": "22:15",
+      "arrivalTime": "22:41",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7825_597_57",
+      "gtfsTripId": "7825",
+      "carrier": "pks",
+      "line": "305",
+      "direction": "glogow_rzeszow",
+      "time": "07:00",
+      "arrivalTime": "07:28",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7812_63_597",
+      "gtfsTripId": "7812",
+      "carrier": "pks",
+      "line": "305",
+      "direction": "rzeszow_glogow",
+      "time": "07:45",
+      "arrivalTime": "08:09",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7827_597_57",
+      "gtfsTripId": "7827",
+      "carrier": "pks",
+      "line": "305",
+      "direction": "glogow_rzeszow",
+      "time": "15:15",
+      "arrivalTime": "15:40",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7814_63_597",
+      "gtfsTripId": "7814",
+      "carrier": "pks",
+      "line": "305",
+      "direction": "rzeszow_glogow",
+      "time": "15:45",
+      "arrivalTime": "16:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7816_63_597",
+      "gtfsTripId": "7816",
+      "carrier": "pks",
+      "line": "305",
+      "direction": "rzeszow_glogow",
+      "time": "22:30",
+      "arrivalTime": "22:53",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4298_63_597",
+      "gtfsTripId": "4298",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "15:15",
+      "arrivalTime": "15:46",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4299_597_57",
+      "gtfsTripId": "4299",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "16:22",
+      "arrivalTime": "16:48",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4201_776_597",
+      "gtfsTripId": "4201",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "04:57",
+      "arrivalTime": "05:18",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4201_776_57",
+      "gtfsTripId": "4201",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "04:57",
+      "arrivalTime": "05:43",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4201_597_57",
+      "gtfsTripId": "4201",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "05:18",
+      "arrivalTime": "05:43",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4200_63_597",
+      "gtfsTripId": "4200",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "05:45",
+      "arrivalTime": "06:06",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4200_63_777",
+      "gtfsTripId": "4200",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "05:45",
+      "arrivalTime": "06:28",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4203_776_597",
+      "gtfsTripId": "4203",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "06:08",
+      "arrivalTime": "06:31",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4203_776_57",
+      "gtfsTripId": "4203",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:08",
+      "arrivalTime": "07:00",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4203_597_57",
+      "gtfsTripId": "4203",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "06:31",
+      "arrivalTime": "07:00",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4205_776_597",
+      "gtfsTripId": "4205",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "06:53",
+      "arrivalTime": "07:16",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4205_776_57",
+      "gtfsTripId": "4205",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "06:53",
+      "arrivalTime": "07:45",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4205_597_57",
+      "gtfsTripId": "4205",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "07:16",
+      "arrivalTime": "07:45",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4207_776_597",
+      "gtfsTripId": "4207",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "08:42",
+      "arrivalTime": "09:05",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4209_776_597",
+      "gtfsTripId": "4209",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "10:35",
+      "arrivalTime": "10:58",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4206_63_597",
+      "gtfsTripId": "4206",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "13:35",
+      "arrivalTime": "13:59",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4206_63_777",
+      "gtfsTripId": "4206",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "13:35",
+      "arrivalTime": "14:22",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4208_63_597",
+      "gtfsTripId": "4208",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "14:20",
+      "arrivalTime": "14:45",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4208_63_777",
+      "gtfsTripId": "4208",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "14:20",
+      "arrivalTime": "15:08",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4211_776_597",
+      "gtfsTripId": "4211",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "14:48",
+      "arrivalTime": "15:11",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4211_776_57",
+      "gtfsTripId": "4211",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "14:48",
+      "arrivalTime": "15:40",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4211_597_57",
+      "gtfsTripId": "4211",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "15:11",
+      "arrivalTime": "15:40",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4213_776_597",
+      "gtfsTripId": "4213",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "15:39",
+      "arrivalTime": "16:02",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4213_776_57",
+      "gtfsTripId": "4213",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:39",
+      "arrivalTime": "16:29",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4213_597_57",
+      "gtfsTripId": "4213",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "16:02",
+      "arrivalTime": "16:29",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4210_63_597",
+      "gtfsTripId": "4210",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "15:55",
+      "arrivalTime": "16:22",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4210_63_777",
+      "gtfsTripId": "4210",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "15:55",
+      "arrivalTime": "16:45",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4212_63_597",
+      "gtfsTripId": "4212",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "16:45",
+      "arrivalTime": "17:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4212_63_777",
+      "gtfsTripId": "4212",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:45",
+      "arrivalTime": "17:35",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4215_776_597",
+      "gtfsTripId": "4215",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "17:10",
+      "arrivalTime": "17:33",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4215_776_57",
+      "gtfsTripId": "4215",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "17:10",
+      "arrivalTime": "18:00",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4215_597_57",
+      "gtfsTripId": "4215",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "17:33",
+      "arrivalTime": "18:00",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4214_63_597",
+      "gtfsTripId": "4214",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "18:15",
+      "arrivalTime": "18:41",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4214_63_777",
+      "gtfsTripId": "4214",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "18:15",
+      "arrivalTime": "19:04",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4217_776_597",
+      "gtfsTripId": "4217",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "19:29",
+      "arrivalTime": "19:51",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4217_776_57",
+      "gtfsTripId": "4217",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "19:29",
+      "arrivalTime": "20:13",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4217_597_57",
+      "gtfsTripId": "4217",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "19:51",
+      "arrivalTime": "20:13",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4216_63_597",
+      "gtfsTripId": "4216",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "20:20",
+      "arrivalTime": "20:45",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4216_63_777",
+      "gtfsTripId": "4216",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "20:20",
+      "arrivalTime": "21:06",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4221_776_597",
+      "gtfsTripId": "4221",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "04:57",
+      "arrivalTime": "05:19",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4221_776_57",
+      "gtfsTripId": "4221",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "04:57",
+      "arrivalTime": "05:46",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4221_597_57",
+      "gtfsTripId": "4221",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "05:19",
+      "arrivalTime": "05:46",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4222_63_597",
+      "gtfsTripId": "4222",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "06:30",
+      "arrivalTime": "06:56",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4222_63_777",
+      "gtfsTripId": "4222",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "06:30",
+      "arrivalTime": "07:17",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4224_63_597",
+      "gtfsTripId": "4224",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "07:25",
+      "arrivalTime": "07:51",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4224_63_777",
+      "gtfsTripId": "4224",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "07:25",
+      "arrivalTime": "08:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4225_776_597",
+      "gtfsTripId": "4225",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "07:53",
+      "arrivalTime": "08:16",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4225_776_57",
+      "gtfsTripId": "4225",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "07:53",
+      "arrivalTime": "08:43",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4225_597_57",
+      "gtfsTripId": "4225",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "08:16",
+      "arrivalTime": "08:43",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4227_776_597",
+      "gtfsTripId": "4227",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "08:40",
+      "arrivalTime": "09:02",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4227_776_57",
+      "gtfsTripId": "4227",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "08:40",
+      "arrivalTime": "09:28",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4227_597_57",
+      "gtfsTripId": "4227",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "09:02",
+      "arrivalTime": "09:28",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4226_63_597",
+      "gtfsTripId": "4226",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "10:00",
+      "arrivalTime": "10:26",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4226_63_777",
+      "gtfsTripId": "4226",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "10:00",
+      "arrivalTime": "10:47",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4229_776_597",
+      "gtfsTripId": "4229",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "11:22",
+      "arrivalTime": "11:44",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4229_776_57",
+      "gtfsTripId": "4229",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "11:22",
+      "arrivalTime": "12:11",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4229_597_57",
+      "gtfsTripId": "4229",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "11:44",
+      "arrivalTime": "12:11",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4228_63_597",
+      "gtfsTripId": "4228",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "13:50",
+      "arrivalTime": "14:16",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4228_63_777",
+      "gtfsTripId": "4228",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "13:50",
+      "arrivalTime": "14:37",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4231_776_597",
+      "gtfsTripId": "4231",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "15:08",
+      "arrivalTime": "15:30",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4231_776_57",
+      "gtfsTripId": "4231",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:08",
+      "arrivalTime": "15:56",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4231_597_57",
+      "gtfsTripId": "4231",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "15:30",
+      "arrivalTime": "15:56",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4230_63_597",
+      "gtfsTripId": "4230",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "16:00",
+      "arrivalTime": "16:27",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4230_63_777",
+      "gtfsTripId": "4230",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:00",
+      "arrivalTime": "16:48",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4233_776_597",
+      "gtfsTripId": "4233",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "17:33",
+      "arrivalTime": "17:55",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4233_776_57",
+      "gtfsTripId": "4233",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "17:33",
+      "arrivalTime": "18:21",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4233_597_57",
+      "gtfsTripId": "4233",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "17:55",
+      "arrivalTime": "18:21",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4232_63_597",
+      "gtfsTripId": "4232",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "17:35",
+      "arrivalTime": "18:01",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4232_63_777",
+      "gtfsTripId": "4232",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "17:35",
+      "arrivalTime": "18:22",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4234_63_597",
+      "gtfsTripId": "4234",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "18:25",
+      "arrivalTime": "18:51",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4234_63_777",
+      "gtfsTripId": "4234",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "18:25",
+      "arrivalTime": "19:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4235_776_597",
+      "gtfsTripId": "4235",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "18:53",
+      "arrivalTime": "19:15",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4235_776_57",
+      "gtfsTripId": "4235",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "18:53",
+      "arrivalTime": "19:41",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4235_597_57",
+      "gtfsTripId": "4235",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "19:15",
+      "arrivalTime": "19:41",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4237_776_597",
+      "gtfsTripId": "4237",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "19:37",
+      "arrivalTime": "19:59",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4237_776_57",
+      "gtfsTripId": "4237",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "19:37",
+      "arrivalTime": "20:24",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4237_597_57",
+      "gtfsTripId": "4237",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "19:59",
+      "arrivalTime": "20:24",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4236_63_597",
+      "gtfsTripId": "4236",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "20:40",
+      "arrivalTime": "21:05",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4236_63_777",
+      "gtfsTripId": "4236",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "20:40",
+      "arrivalTime": "21:26",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4239_776_597",
+      "gtfsTripId": "4239",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "07:40",
+      "arrivalTime": "08:03",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4239_776_57",
+      "gtfsTripId": "4239",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "07:40",
+      "arrivalTime": "08:29",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4239_597_57",
+      "gtfsTripId": "4239",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "08:03",
+      "arrivalTime": "08:29",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4238_63_597",
+      "gtfsTripId": "4238",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "09:30",
+      "arrivalTime": "09:55",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4238_63_777",
+      "gtfsTripId": "4238",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "09:30",
+      "arrivalTime": "10:16",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4241_776_597",
+      "gtfsTripId": "4241",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "10:48",
+      "arrivalTime": "11:11",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4241_776_57",
+      "gtfsTripId": "4241",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "10:48",
+      "arrivalTime": "11:37",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4241_597_57",
+      "gtfsTripId": "4241",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "11:11",
+      "arrivalTime": "11:37",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4240_63_597",
+      "gtfsTripId": "4240",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "12:00",
+      "arrivalTime": "12:25",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4240_63_777",
+      "gtfsTripId": "4240",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "12:00",
+      "arrivalTime": "12:46",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4243_776_597",
+      "gtfsTripId": "4243",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "12:55",
+      "arrivalTime": "13:18",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4243_776_57",
+      "gtfsTripId": "4243",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "12:55",
+      "arrivalTime": "13:44",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4243_597_57",
+      "gtfsTripId": "4243",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "13:18",
+      "arrivalTime": "13:44",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4242_63_597",
+      "gtfsTripId": "4242",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "14:15",
+      "arrivalTime": "14:40",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4242_63_777",
+      "gtfsTripId": "4242",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "14:15",
+      "arrivalTime": "15:01",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Raniżów Rynek 02",
+      "terminatesInRanizow": true,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4245_776_597",
+      "gtfsTripId": "4245",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_glogow",
+      "time": "15:25",
+      "arrivalTime": "15:48",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4245_776_57",
+      "gtfsTripId": "4245",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "ranizow_rzeszow",
+      "time": "15:25",
+      "arrivalTime": "16:14",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4245_597_57",
+      "gtfsTripId": "4245",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "glogow_rzeszow",
+      "time": "15:48",
+      "arrivalTime": "16:14",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4244_63_597",
+      "gtfsTripId": "4244",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_glogow",
+      "time": "16:20",
+      "arrivalTime": "16:45",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4244_63_777",
+      "gtfsTripId": "4244",
+      "carrier": "pks",
+      "line": "311",
+      "direction": "rzeszow_ranizow",
+      "time": "16:20",
+      "arrivalTime": "17:06",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Wola Raniżowska Kąt 08",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4300_63_597",
+      "gtfsTripId": "4300",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "04:25",
+      "arrivalTime": "04:57",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4301_597_57",
+      "gtfsTripId": "4301",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "05:50",
+      "arrivalTime": "06:26",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4304_63_597",
+      "gtfsTripId": "4304",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "06:45",
+      "arrivalTime": "07:18",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4305_597_57",
+      "gtfsTripId": "4305",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "08:09",
+      "arrivalTime": "08:45",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4306_63_597",
+      "gtfsTripId": "4306",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "09:00",
+      "arrivalTime": "09:32",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4307_597_57",
+      "gtfsTripId": "4307",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "10:12",
+      "arrivalTime": "10:48",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4308_63_597",
+      "gtfsTripId": "4308",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "11:45",
+      "arrivalTime": "12:17",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4309_597_57",
+      "gtfsTripId": "4309",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "13:11",
+      "arrivalTime": "13:47",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4310_63_597",
+      "gtfsTripId": "4310",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "14:15",
+      "arrivalTime": "14:47",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4311_597_57",
+      "gtfsTripId": "4311",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "15:42",
+      "arrivalTime": "16:18",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4312_63_597",
+      "gtfsTripId": "4312",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "15:25",
+      "arrivalTime": "15:57",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4314_63_597",
+      "gtfsTripId": "4314",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "16:25",
+      "arrivalTime": "16:58",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4313_597_57",
+      "gtfsTripId": "4313",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "16:51",
+      "arrivalTime": "17:27",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4315_597_57",
+      "gtfsTripId": "4315",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "17:32",
+      "arrivalTime": "18:07",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4318_63_597",
+      "gtfsTripId": "4318",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "19:35",
+      "arrivalTime": "20:07",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4317_597_57",
+      "gtfsTripId": "4317",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "20:47",
+      "arrivalTime": "21:20",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4320_63_597",
+      "gtfsTripId": "4320",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "21:35",
+      "arrivalTime": "22:07",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4319_597_57",
+      "gtfsTripId": "4319",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "22:41",
+      "arrivalTime": "23:14",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4322_63_597",
+      "gtfsTripId": "4322",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "23:35",
+      "arrivalTime": "24:07",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4323_597_57",
+      "gtfsTripId": "4323",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "24:37",
+      "arrivalTime": "24:59",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_SS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4324_63_597",
+      "gtfsTripId": "4324",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "04:50",
+      "arrivalTime": "05:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4325_597_57",
+      "gtfsTripId": "4325",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "05:46",
+      "arrivalTime": "06:20",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4326_63_597",
+      "gtfsTripId": "4326",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "06:25",
+      "arrivalTime": "06:57",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4327_597_57",
+      "gtfsTripId": "4327",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "07:57",
+      "arrivalTime": "08:33",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4328_63_597",
+      "gtfsTripId": "4328",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "08:40",
+      "arrivalTime": "09:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4329_597_57",
+      "gtfsTripId": "4329",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "10:11",
+      "arrivalTime": "10:45",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4330_63_597",
+      "gtfsTripId": "4330",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "11:00",
+      "arrivalTime": "11:32",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4331_597_57",
+      "gtfsTripId": "4331",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "12:27",
+      "arrivalTime": "13:01",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4332_63_597",
+      "gtfsTripId": "4332",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "rzeszow_glogow",
+      "time": "13:15",
+      "arrivalTime": "13:47",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Hucisko pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4333_597_57",
+      "gtfsTripId": "4333",
+      "carrier": "pks",
+      "line": "312W",
+      "direction": "glogow_rzeszow",
+      "time": "14:42",
+      "arrivalTime": "15:18",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4334_63_597",
+      "gtfsTripId": "4334",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "15:20",
+      "arrivalTime": "15:52",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4335_597_57",
+      "gtfsTripId": "4335",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "16:37",
+      "arrivalTime": "17:11",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4336_63_597",
+      "gtfsTripId": "4336",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "17:15",
+      "arrivalTime": "17:48",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4337_597_57",
+      "gtfsTripId": "4337",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "18:17",
+      "arrivalTime": "18:51",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4338_63_597",
+      "gtfsTripId": "4338",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "19:25",
+      "arrivalTime": "19:57",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4339_597_57",
+      "gtfsTripId": "4339",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "20:52",
+      "arrivalTime": "21:25",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4340_63_597",
+      "gtfsTripId": "4340",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "21:45",
+      "arrivalTime": "22:17",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Bugaj Borówkowa pętla 03",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4341_597_57",
+      "gtfsTripId": "4341",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "22:51",
+      "arrivalTime": "23:24",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_NS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4296_63_597",
+      "gtfsTripId": "4296",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "14:25",
+      "arrivalTime": "14:56",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Tajęcina Piaski 13",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4297_597_57",
+      "gtfsTripId": "4297",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "glogow_rzeszow",
+      "time": "15:42",
+      "arrivalTime": "16:13",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4251_776_597",
+      "gtfsTripId": "4251",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_glogow",
+      "time": "05:23",
+      "arrivalTime": "05:46",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4251_776_57",
+      "gtfsTripId": "4251",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "05:23",
+      "arrivalTime": "06:15",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4251_597_57",
+      "gtfsTripId": "4251",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "glogow_rzeszow",
+      "time": "05:46",
+      "arrivalTime": "06:15",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4250_63_597",
+      "gtfsTripId": "4250",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_glogow",
+      "time": "06:20",
+      "arrivalTime": "06:44",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4250_63_777",
+      "gtfsTripId": "4250",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "06:20",
+      "arrivalTime": "07:06",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4253_776_597",
+      "gtfsTripId": "4253",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_glogow",
+      "time": "07:57",
+      "arrivalTime": "08:20",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4253_776_57",
+      "gtfsTripId": "4253",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "07:57",
+      "arrivalTime": "08:47",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4253_597_57",
+      "gtfsTripId": "4253",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "glogow_rzeszow",
+      "time": "08:20",
+      "arrivalTime": "08:47",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4252_63_597",
+      "gtfsTripId": "4252",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_glogow",
+      "time": "12:00",
+      "arrivalTime": "12:27",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4252_63_777",
+      "gtfsTripId": "4252",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "12:00",
+      "arrivalTime": "12:49",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4255_776_597",
+      "gtfsTripId": "4255",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_glogow",
+      "time": "13:37",
+      "arrivalTime": "14:00",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_597",
+      "fromCity": "ranizow",
+      "toCity": "glogow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4255_776_57",
+      "gtfsTripId": "4255",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "ranizow_rzeszow",
+      "time": "13:37",
+      "arrivalTime": "14:26",
+      "fromStop": "pks_stop_776",
+      "toStop": "pks_stop_57",
+      "fromCity": "ranizow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4255_597_57",
+      "gtfsTripId": "4255",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "glogow_rzeszow",
+      "time": "14:00",
+      "arrivalTime": "14:26",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4254_63_597",
+      "gtfsTripId": "4254",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_glogow",
+      "time": "15:30",
+      "arrivalTime": "15:59",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_4254_63_777",
+      "gtfsTripId": "4254",
+      "carrier": "pks",
+      "line": "314",
+      "direction": "rzeszow_ranizow",
+      "time": "15:30",
+      "arrivalTime": "16:21",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_777",
+      "fromCity": "rzeszow",
+      "toCity": "ranizow",
+      "terminalName": "Posuchy Kąty 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7751_597_57",
+      "gtfsTripId": "7751",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "06:55",
+      "arrivalTime": "07:23",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7753_597_57",
+      "gtfsTripId": "7753",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "07:57",
+      "arrivalTime": "08:23",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7755_597_57",
+      "gtfsTripId": "7755",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "08:59",
+      "arrivalTime": "09:28",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7757_597_57",
+      "gtfsTripId": "7757",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "13:10",
+      "arrivalTime": "13:40",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7759_597_57",
+      "gtfsTripId": "7759",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "15:25",
+      "arrivalTime": "15:51",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7761_597_57",
+      "gtfsTripId": "7761",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "glogow_rzeszow",
+      "time": "20:17",
+      "arrivalTime": "20:46",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7750_63_597",
+      "gtfsTripId": "7750",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "06:45",
+      "arrivalTime": "07:15",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7752_63_597",
+      "gtfsTripId": "7752",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "07:50",
+      "arrivalTime": "08:20",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7754_63_597",
+      "gtfsTripId": "7754",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "11:50",
+      "arrivalTime": "12:24",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7756_63_597",
+      "gtfsTripId": "7756",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "13:20",
+      "arrivalTime": "13:51",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7758_63_597",
+      "gtfsTripId": "7758",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "14:10",
+      "arrivalTime": "14:41",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7760_63_597",
+      "gtfsTripId": "7760",
+      "carrier": "pks",
+      "line": "310",
+      "direction": "rzeszow_glogow",
+      "time": "16:05",
+      "arrivalTime": "16:36",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Budy Głogowskie Zacinki rondo 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7818_63_597",
+      "gtfsTripId": "7818",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "05:40",
+      "arrivalTime": "06:18",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7820_63_597",
+      "gtfsTripId": "7820",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "06:27",
+      "arrivalTime": "07:11",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7852_63_597",
+      "gtfsTripId": "7852",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "07:00",
+      "arrivalTime": "07:42",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7822_63_597",
+      "gtfsTripId": "7822",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "07:30",
+      "arrivalTime": "08:08",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7824_63_597",
+      "gtfsTripId": "7824",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "08:45",
+      "arrivalTime": "09:24",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7828_63_597",
+      "gtfsTripId": "7828",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "09:33",
+      "arrivalTime": "10:12",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7830_63_597",
+      "gtfsTripId": "7830",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "11:45",
+      "arrivalTime": "12:25",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7832_63_597",
+      "gtfsTripId": "7832",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "13:45",
+      "arrivalTime": "14:24",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7834_63_597",
+      "gtfsTripId": "7834",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "14:35",
+      "arrivalTime": "15:16",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7836_63_597",
+      "gtfsTripId": "7836",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "15:35",
+      "arrivalTime": "16:16",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7838_63_597",
+      "gtfsTripId": "7838",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "16:20",
+      "arrivalTime": "16:58",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Kolejowa I Centrum Przesiadkowe 01",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7840_63_597",
+      "gtfsTripId": "7840",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "17:00",
+      "arrivalTime": "17:38",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7842_63_597",
+      "gtfsTripId": "7842",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "17:45",
+      "arrivalTime": "18:20",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7844_63_597",
+      "gtfsTripId": "7844",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "18:50",
+      "arrivalTime": "19:26",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7850_63_597",
+      "gtfsTripId": "7850",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "19:45",
+      "arrivalTime": "20:23",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7846_63_597",
+      "gtfsTripId": "7846",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "21:30",
+      "arrivalTime": "22:03",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7848_63_597",
+      "gtfsTripId": "7848",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "rzeszow_glogow",
+      "time": "22:40",
+      "arrivalTime": "23:13",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Głogów Młp. Os. Słoneczne 02",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7829_597_57",
+      "gtfsTripId": "7829",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "04:49",
+      "arrivalTime": "05:25",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7831_597_57",
+      "gtfsTripId": "7831",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "05:40",
+      "arrivalTime": "06:19",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7833_597_57",
+      "gtfsTripId": "7833",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "06:35",
+      "arrivalTime": "07:16",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7835_597_57",
+      "gtfsTripId": "7835",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "07:41",
+      "arrivalTime": "08:20",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7837_597_57",
+      "gtfsTripId": "7837",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "08:35",
+      "arrivalTime": "09:15",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7839_597_57",
+      "gtfsTripId": "7839",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "10:29",
+      "arrivalTime": "11:14",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7841_597_57",
+      "gtfsTripId": "7841",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "12:34",
+      "arrivalTime": "13:14",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7843_597_57",
+      "gtfsTripId": "7843",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "13:42",
+      "arrivalTime": "14:24",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7845_597_57",
+      "gtfsTripId": "7845",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "14:16",
+      "arrivalTime": "15:13",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7845_597_57",
+      "gtfsTripId": "7845",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "14:29",
+      "arrivalTime": "15:13",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7847_597_57",
+      "gtfsTripId": "7847",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "15:39",
+      "arrivalTime": "16:17",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7849_597_57",
+      "gtfsTripId": "7849",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "17:04",
+      "arrivalTime": "17:40",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7851_597_57",
+      "gtfsTripId": "7851",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "20:40",
+      "arrivalTime": "21:16",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7853_597_57",
+      "gtfsTripId": "7853",
+      "carrier": "pks",
+      "line": "312",
+      "direction": "glogow_rzeszow",
+      "time": "21:28",
+      "arrivalTime": "22:04",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7700_63_597",
+      "gtfsTripId": "7700",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "05:25",
+      "arrivalTime": "05:53",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Wysoka Głogowska leśniczówka pętla 07",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7702_63_597",
+      "gtfsTripId": "7702",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "06:00",
+      "arrivalTime": "06:24",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Tajęcina Piaski 13",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7704_63_597",
+      "gtfsTripId": "7704",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "09:40",
+      "arrivalTime": "10:11",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Tajęcina Piaski 13",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7706_63_597",
+      "gtfsTripId": "7706",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "15:40",
+      "arrivalTime": "16:11",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Tajęcina Piaski 13",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7708_63_597",
+      "gtfsTripId": "7708",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "rzeszow_glogow",
+      "time": "17:25",
+      "arrivalTime": "17:56",
+      "fromStop": "pks_stop_63",
+      "toStop": "pks_stop_597",
+      "fromCity": "rzeszow",
+      "toCity": "glogow",
+      "terminalName": "Tajęcina Piaski 13",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7705_597_57",
+      "gtfsTripId": "7705",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "glogow_rzeszow",
+      "time": "07:13",
+      "arrivalTime": "07:44",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7709_597_57",
+      "gtfsTripId": "7709",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "glogow_rzeszow",
+      "time": "08:40",
+      "arrivalTime": "09:11",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    },
+    {
+      "id": "pks_gtfs_7711_597_57",
+      "gtfsTripId": "7711",
+      "carrier": "pks",
+      "line": "313",
+      "direction": "glogow_rzeszow",
+      "time": "10:55",
+      "arrivalTime": "11:26",
+      "fromStop": "pks_stop_597",
+      "toStop": "pks_stop_57",
+      "fromCity": "glogow",
+      "toCity": "rzeszow",
+      "terminalName": "Rzeszów D.A. 10",
+      "terminatesInRanizow": false,
+      "serviceIds": [
+        "pks_gtfs_PS"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "appId": "pl.ranizow.rozklad",
+  "appName": "Raniżów · rozkład",
+  "webDir": "dist",
+  "backgroundColor": "#f5f3ec",
+  "ios": {
+    "contentInset": "never"
+  },
+  "android": {
+    "minWebViewVersion": 80
+  }
+}

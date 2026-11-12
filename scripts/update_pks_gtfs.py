@@ -1,29 +1,13 @@
 #!/usr/bin/env python3
-"""
-update_pks_gtfs.py
---------------------------------------------------------------------
-Pobiera oficjalny plik GTFS PKS (linie ZGPKS Rzeszów, w tym MKS)
-z mpkrzeszow.pl, wyciąga z niego WYŁĄCZNIE linie 311 i 314 w zakresie
-przystanków Raniżów, Rynek <-> Rzeszów D.A., i podmienia sekcję danych
-PKS w pliku data.json na dokładne dane z tego pliku.
-
-Nie dotyka danych Ekspres Bus (carrier "ekspresbus") ani ręcznie
-zdefiniowanych usług (eb_*, pks_D, pks_6s, pks_plus...) — te zostają
-bez zmian. Ten skrypt zarządza tylko:
-  - kursami z "carrier": "pks",
-  - usługami o id zaczynającym się od "pks_gtfs_" (wygenerowanymi
-    automatycznie z calendar.txt / calendar_dates.txt).
-
-Uruchamiane przez .github/workflows/update-pks.yml — automatycznie
-(harmonogram) i ręcznie (przycisk "Run workflow" w GitHub = odpowiednik
-"odśwież teraz").
-
-Jeśli nazwy przystanków lub numer linii w realnym pliku GTFS różnią się
-od tego, co tu założono, dopasuj stałe w sekcji KONFIGURACJA niżej —
-reszta skryptu nie wymaga zmian.
---------------------------------------------------------------------
+"""Import oficjalnego GTFS PKS: Raniżów Rynek, Głogów Kolejowa i Rzeszów D.A.
+Zachowuje usługi ręczne i Ekspres Bus poza wycofanym kursem 18:05.
+Generuje odcinki z czasem przyjazdu, prawdziwymi przystankami i końcem trasy.
+Nie zapisuje niepełnego importu; kalendarze i wyjątki pochodzą z GTFS.
 """
 
+import argparse
+import copy
+import hashlib
 import csv
 import io
 import json
@@ -37,17 +21,6 @@ from urllib.request import urlopen, Request
 
 GTFS_URL = "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip"
 DATA_JSON_PATH = Path(__file__).resolve().parent.parent / "data.json"
-
-# Numery linii, które nas interesują (route_short_name w GTFS).
-TARGET_LINES = {"311", "314"}
-
-# Dopasowanie przystanków po fragmencie nazwy (wielkość liter nieistotna,
-# polskie znaki jak w GTFS). Jeśli w realnym pliku stop_name wygląda
-# inaczej niż zakładamy, popraw tu.
-STOP_MATCHERS = {
-    "ranizow_rynek": lambda name: "RANIŻÓW" in name.upper() and "RYNEK" in name.upper(),
-    "rzeszow_da": lambda name: "RZESZÓW" in name.upper() and ("D.A" in name.upper() or "DWORZEC" in name.upper()),
-}
 
 WEEKDAY_FIELDS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 WEEKDAY_LABELS_PL = ["pon.", "wt.", "śr.", "czw.", "pt.", "sob.", "niedz."]
@@ -69,11 +42,11 @@ def read_csv(zf: zipfile.ZipFile, filename: str) -> list[dict]:
 
 
 def norm_time(hms: str) -> str:
-    """GTFS pozwala na godziny >=24:00:00 (kurs po północy). Dla naszej
-    trasy to się nie zdarza, ale na wszelki wypadek normalizujemy do 0-23."""
-    h, m, _s = hms.strip().split(":")
-    h = int(h) % 24
-    return f"{h:02d}:{m}"
+    """Keep GTFS service-day hours >=24 instead of moving a trip to the wrong day."""
+    h, m, *_ = hms.strip().split(":")
+    if not (0 <= int(h) <= 47 and 0 <= int(m) <= 59):
+        raise ValueError(f"Niepoprawna godzina GTFS: {hms}")
+    return f"{int(h):02d}:{int(m):02d}"
 
 
 def weekday_label(row: dict) -> str:
@@ -145,96 +118,119 @@ def build_services(zf: zipfile.ZipFile, used_service_ids: set[str]) -> dict:
     return services
 
 
-def main() -> int:
-    print(f"Pobieram GTFS PKS z {GTFS_URL} ...")
-    zf = fetch_gtfs_zip(GTFS_URL)
+# The transfer uses the exact same GTFS stop, not a city-wide approximation.
+HUB_STOP_ID = "597"  # Kolejowa I Centrum Przesiadkowe 01
+RANIZOW_STOP_IDS = {"776", "777"}  # Rynek, both directions
 
-    routes = read_csv(zf, "routes.txt")
-    stops = read_csv(zf, "stops.txt")
-    trips = read_csv(zf, "trips.txt")
-    stop_times = read_csv(zf, "stop_times.txt")
 
-    target_route_ids = {r["route_id"]: r.get("route_short_name", "") for r in routes if r.get("route_short_name") in TARGET_LINES}
-    print(f"Znalezione linie: {sorted(set(target_route_ids.values()))} ({len(target_route_ids)} route_id)")
-    if not target_route_ids:
-        print("UWAGA: nie znaleziono linii 311/314 w routes.txt — sprawdź TARGET_LINES / route_short_name.", file=sys.stderr)
+def city_for_stop(stop):
+    if stop["stop_id"] in RANIZOW_STOP_IDS:
+        return "ranizow"
+    if stop["stop_id"] == HUB_STOP_ID:
+        return "glogow"
+    if stop.get("stop_name", "").startswith("Rzeszów D.A."):
+        return "rzeszow"
+    return None
 
-    stop_role = {}  # stop_id -> "ranizow_rynek" | "rzeszow_da"
-    for s in stops:
-        for role, matcher in STOP_MATCHERS.items():
-            if matcher(s.get("stop_name", "")):
-                stop_role[s["stop_id"]] = role
-    print(f"Dopasowane przystanki: {len(stop_role)} (oczekiwane role: {set(STOP_MATCHERS)})")
-    if set(stop_role.values()) != set(STOP_MATCHERS):
-        print("UWAGA: nie znaleziono obu wymaganych przystanków — sprawdź STOP_MATCHERS.", file=sys.stderr)
 
-    target_trip_ids = {t["trip_id"]: t for t in trips if t["route_id"] in target_route_ids}
-
-    # stop_times pogrupowane wg trip_id, tylko dla interesujących nas przejazdów
-    st_by_trip: dict[str, list[dict]] = {}
-    for row in stop_times:
-        tid = row["trip_id"]
-        if tid in target_trip_ids:
-            st_by_trip.setdefault(tid, []).append(row)
-
-    new_trips = []
-    used_service_ids = set()
-    counter = 0
-
-    for tid, rows in st_by_trip.items():
+def import_feed(zf, data):
+    data = copy.deepcopy(data)
+    routes = {r["route_id"]: r for r in read_csv(zf, "routes.txt")}
+    stops = {r["stop_id"]: r for r in read_csv(zf, "stops.txt")}
+    trips = {r["trip_id"]: r for r in read_csv(zf, "trips.txt")}
+    by_trip = {}
+    for row in read_csv(zf, "stop_times.txt"):
+        by_trip.setdefault(row["trip_id"], []).append(row)
+    generated, used_services, imported_stops = [], set(), {}
+    for tid, rows in by_trip.items():
         rows.sort(key=lambda r: int(r["stop_sequence"]))
-        hits = [(r, stop_role[r["stop_id"]]) for r in rows if r["stop_id"] in stop_role]
-        if len(hits) < 2:
-            continue  # ten konkretny kurs nie obsługuje obu naszych przystanków
-
-        (row_a, role_a), (row_b, role_b) = hits[0], hits[-1]
-        if role_a == role_b:
-            continue  # coś dziwnego — pomijamy bezpiecznie
-
-        if role_a == "ranizow_rynek":
-            direction = "ranizow_rzeszow"
-            board_row, from_stop, to_stop = row_a, "ranizow_rynek", "rzeszow_da"
-        else:
-            direction = "rzeszow_ranizow"
-            board_row, from_stop, to_stop = row_a, "rzeszow_da", "ranizow_rynek"
-
-        trip_meta = target_trip_ids[tid]
-        route_no = target_route_ids[trip_meta["route_id"]]
-        service_id = trip_meta["service_id"]
-        used_service_ids.add(service_id)
-
-        counter += 1
-        new_trips.append({
-            "id": f"pks_gtfs_{counter}",
-            "carrier": "pks",
-            "line": route_no,
-            "direction": direction,
-            "time": norm_time(board_row.get("departure_time") or board_row.get("arrival_time")),
-            "fromStop": from_stop,
-            "toStop": to_stop,
-            "serviceIds": [f"pks_gtfs_{service_id}"],
-        })
-
-    print(f"Zbudowano {len(new_trips)} kursów PKS (linie {sorted(set(target_route_ids.values()))}).")
-
-    new_services = build_services(zf, used_service_ids)
-    print(f"Zbudowano {len(new_services)} definicji usług (kalendarzy) PKS.")
-
-    # ---- scal z istniejącym data.json, dotykając tylko sekcji PKS ----
-    data = json.loads(DATA_JSON_PATH.read_text(encoding="utf-8"))
-
-    data["trips"] = [t for t in data["trips"] if t.get("carrier") != "pks"] + new_trips
-    data["services"] = {
-        sid: svc for sid, svc in data["services"].items() if not sid.startswith("pks_gtfs_")
-    }
+        trip = trips[tid]
+        hits = [(i, r, city_for_stop(stops[r["stop_id"]])) for i, r in enumerate(rows)
+                if city_for_stop(stops[r["stop_id"]])]
+        for pos, (i, a, from_city) in enumerate(hits):
+            for j, b, to_city in hits[pos + 1:]:
+                if from_city == to_city or (from_city == "glogow" and to_city == "ranizow"):
+                    continue
+                # Include all lines between the interchange and Rzeszów, and all
+                # feeds serving Raniżów Rynek. Never invent a transfer stop.
+                from_key, to_key = "pks_stop_" + a["stop_id"], "pks_stop_" + b["stop_id"]
+                for row, key, city in [(a, from_key, from_city), (b, to_key, to_city)]:
+                    stop = stops[row["stop_id"]]
+                    imported_stops[key] = {"name": stop["stop_name"], "city": city,
+                        "lat": float(stop["stop_lat"]), "lon": float(stop["stop_lon"])}
+                dep = norm_time(a.get("departure_time") or a["arrival_time"])
+                arr = norm_time(b.get("arrival_time") or b["departure_time"])
+                if tuple(map(int, arr.split(":"))) < tuple(map(int, dep.split(":"))):
+                    raise ValueError(f"Przyjazd przed odjazdem: {tid}")
+                used_services.add(trip["service_id"])
+                generated.append({
+                    "id": f"pks_gtfs_{tid}_{a['stop_id']}_{b['stop_id']}",
+                    "gtfsTripId": tid, "carrier": "pks",
+                    "line": routes[trip["route_id"]]["route_short_name"],
+                    "direction": f"{from_city}_{to_city}", "time": dep, "arrivalTime": arr,
+                    "fromStop": from_key, "toStop": to_key,
+                    "fromCity": from_city, "toCity": to_city,
+                    "terminalName": stops[rows[-1]["stop_id"]]["stop_name"],
+                    "terminatesInRanizow": rows[-1]["stop_id"] in RANIZOW_STOP_IDS,
+                    "serviceIds": ["pks_gtfs_" + trip["service_id"]],
+                })
+    if not generated:
+        raise ValueError("Brak kursów — zachowano poprzednie dane.")
+    directions = {t["direction"] for t in generated}
+    required = {"ranizow_glogow", "glogow_rzeszow", "rzeszow_glogow",
+                "ranizow_rzeszow", "rzeszow_ranizow"}
+    if not required <= directions:
+        raise ValueError(f"Niepełny rozkład — brakuje {required - directions}; zachowano poprzednie dane.")
+    new_services = build_services(zf, used_services)
+    if any(sid not in new_services for t in generated for sid in t["serviceIds"]):
+        raise ValueError("Brak kalendarza dla części kursów — zachowano poprzednie dane.")
+    data["trips"] = [t for t in data["trips"] if t.get("carrier") != "pks"] + generated
+    data["services"] = {k: v for k, v in data["services"].items() if not k.startswith("pks_gtfs_")}
     data["services"].update(new_services)
+    data["stops"] = {k: v for k, v in data["stops"].items() if not k.startswith("pks_stop_")}
+    data["stops"].update(imported_stops)
+    for key, city in [("ranizow_rynek", "ranizow"), ("rzeszow_da", "rzeszow"), ("rzeszow_lokalny", "rzeszow")]:
+        if key in data["stops"]:
+            data["stops"][key]["city"] = city
+    for t in data["trips"]:
+        t["fromCity"] = data["stops"][t["fromStop"]]["city"]
+        t["toCity"] = data["stops"][t["toStop"]]["city"]
+    # Explicit manual withdrawal: future GTFS imports must not bring it back.
+    data["trips"] = [t for t in data["trips"] if not (
+        t.get("carrier") == "ekspresbus" and t.get("time") == "18:05")]
+    dates = [d for svc in new_services.values() for d in svc.get("exceptions", {}).get("add", [])]
+    starts = [s["startDate"] for s in new_services.values() if any(s["days"])]
+    ends = [s["endDate"] for s in new_services.values() if any(s["days"])]
+    if not dates and not starts:
+        raise ValueError("Pusty kalendarz kursowania.")
+    data["meta"].update({"schemaVersion": 2, "route": "Raniżów ↔ Rzeszów · Głogów Małopolski",
+        "pksDataStatus": "live", "pksSource": GTFS_URL,
+        "pksLastUpdated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "pksValidFrom": min(dates + starts), "pksValidUntil": max(dates + ends),
+        "transferStop": "pks_stop_" + HUB_STOP_ID,
+        "disabledDirections": ["glogow_ranizow"],
+        "routeCorrection": "Według korekty właściciela nie oferujemy Głogów → Raniżów ani powrotów z taką przesiadką.",
+        "pksNote": "Oficjalny GTFS PKS. Przesiadki wyliczane z godzin; nie są gwarantowane przez przewoźnika.",
+        "ekspresBusWithdrawn": ["18:05"],
+    })
+    return data
 
-    data["meta"]["pksDataStatus"] = "live"
-    data["meta"]["pksLastUpdated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    data["meta"]["pksNote"] = "Dane pobrane automatycznie z oficjalnego pliku GTFS PKS (mpkrzeszow.pl)."
 
-    DATA_JSON_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Zapisano {DATA_JSON_PATH}. Gotowe.")
+def main():
+    parser = argparse.ArgumentParser(description="Importuj PKS i odcinki do przesiadek w Głogowie.")
+    parser.add_argument("--gtfs-file", type=Path, help="Lokalny plik ZIP zamiast pobierania")
+    parser.add_argument("--output", type=Path, default=DATA_JSON_PATH)
+    args = parser.parse_args()
+    raw = args.gtfs_file.read_bytes() if args.gtfs_file else None
+    zf = zipfile.ZipFile(io.BytesIO(raw)) if raw else fetch_gtfs_zip(GTFS_URL)
+    data = json.loads(args.output.read_text(encoding="utf-8"))
+    data = import_feed(zf, data)
+    data["meta"]["pksFeedSha256"] = hashlib.sha256(zf.fp.getvalue()).hexdigest()
+    # Replace only after a successful complete import.
+    tmp = args.output.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(args.output)
+    print(f"Zapisano {len(data['trips'])} odcinków; GTFS ważny do {data['meta']['pksValidUntil']}.")
     return 0
 
 

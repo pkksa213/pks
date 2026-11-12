@@ -1,0 +1,35 @@
+name: Android APK do testów
+on:
+  workflow_dispatch:
+    inputs:
+      schedule_data_url:
+        description: 'Publiczny adres HTTPS pliku data.json (puste = dane z paczki)'
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npm run sync
+        env:
+          SCHEDULE_DATA_URL: ${{ inputs.schedule_data_url }}
+      - name: Zbuduj APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon --max-workers=2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ranizow-android-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk
