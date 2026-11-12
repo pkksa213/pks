@@ -58,9 +58,9 @@ npm run ios        # Xcode na macOS
 
 Android: minimum 7.0/API 24 i WebView 80+, JDK 21, SDK 36. iOS/Safari: 15+. Natywny projekt iOS jest zachowany, a użytkownicy iPhone’a instalują PWA z Safari. Nie publikujemy w sklepach.
 
-Wydanie Android 1.0.1 ma `versionCode=2`, jest podpisane tym samym kluczem co 1.0.0 i instaluje się jako aktualizacja. Klucz i hasło pozostają poza repozytorium w chronionym `/workspace/pks-signing`; zachowaj bezpieczną kopię przed zmianą środowiska. Nigdy nie wysyłaj ich na hosting ani do Git.
+Wydanie Android 1.0.2 ma `versionCode=3`, jest podpisane tym samym kluczem co 1.0.0 i instaluje się jako aktualizacja. Klucz i hasło pozostają poza repozytorium w chronionym `/workspace/pks-signing`; zachowaj bezpieczną kopię przed zmianą środowiska. Nigdy nie wysyłaj ich na hosting ani do Git.
 
-`app.config.json` ustawia aktualizacje rozkładu z `https://ranizowpksibus.free.nf/schedule.php`; zmienna `SCHEDULE_DATA_URL` może nadpisać adres przy kompilacji. Punkt PHP ustawia CORS dla publicznego JSON. Rozkład zapisany lub dołączony do APK jest widoczny natychmiast, a pobieranie działa w tle. Stara pamięć podręczna bez dwóch potwierdzonych połączeń nie jest używana przez nową aplikację.
+`app.config.json` ustawia aktualizacje rozkładu z `https://raw.githubusercontent.com/pkksa213/pks/main/data.json`; zmienna `SCHEDULE_DATA_URL` może nadpisać adres przy kompilacji. Repozytorium jest publiczne na prośbę właściciela. Surowy plik GitHub jest dostępny przez HTTPS bez logowania i ma nagłówek CORS dla aplikacji. GitHub Pages nie jest potrzebne. Punkt PHP pozostaje na hostingu jako punkt dla tej samej witryny, ale APK nie korzysta już z InfinityFree. Rozkład zapisany lub dołączony do APK jest widoczny natychmiast, a pobieranie działa w tle. Stara pamięć podręczna bez dwóch potwierdzonych połączeń nie jest używana przez nową aplikację.
 
 `npm run build` kopiuje instalatory z `downloads` do `dist/downloads`; `npm run sync` ich nie kopiuje. APK nie jest wstępnie pobierany przez service worker. Wersja cache powłoki zależy od hasha zbudowanych plików.
 
@@ -71,3 +71,11 @@ Workflow `update-pks.yml` działa po zmianie `main`, z harmonogramu i ręcznie. 
 Dostęp HTTP z tego środowiska do hostingu wcześniej zwracał 503; nie wyłączamy weryfikacji TLS. Sukces i porównanie bajtów przez FTP potwierdzają przesłanie plików, ale nie zastępują testu na rzeczywistym telefonie.
 
 [Instalacja bez sklepów](docs/PUBLIKACJA.md).
+
+## Dlaczego internet działał, a APK nie aktualizował rozkładu?
+
+Darmowy InfinityFree wymaga przeglądarkowej obsługi JavaScript i ciasteczek, przez co nie udostępnia API dla aplikacji mobilnych. Samo dodanie CORS w PHP tego nie zmienia: https://forum.infinityfree.com/t/ensuring-only-web-browsers-can-access-your-website/49353. Wersje APK do 1.0.1 próbowały pobierać dane z tego hostingu. W 1.0.2 źródłem jest publiczny plik GitHub wskazany wyżej; sprawdzono anonimowy HTTPS GET, poprawność JSON i CORS. Nie używamy płatnego hostingu ani Pages.
+
+Komunikat „Brak internetu” jest zarezerwowany dla stanu offline telefonu. Błąd serwera, odpowiedź HTML zamiast JSON i inne problemy aktualizacji pokazują „Nie udało się zaktualizować rozkładu” i zachowują zapisaną kopię. Powrót sieci uruchamia ponowną próbę. Starsze nieudane żądanie nie może nadpisać wyniku nowszej udanej aktualizacji. Użytkownicy starszego APK muszą zainstalować 1.0.2 jako aktualizację; samo „Odśwież rozkład” w 1.0.1 nie zmieni zapisanego w niej adresu serwera.
+
+Repozytorium musi pozostać publiczne, aby ten adres działał bez logowania. Klucz podpisujący pozostaje poza repozytorium.

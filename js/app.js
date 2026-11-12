@@ -9,7 +9,7 @@
   }
   function read(key) { try { return localStorage.getItem(key); } catch (_) { return null; } }
   function save(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* Private browsing/storage full: app still works. */ } }
-  const state = { data: null, date: today(), pair: 'ranizow_rzeszow', reverse: false, offline: false };
+  const state = { data: null, date: today(), pair: 'ranizow_rzeszow', reverse: false, updateState: 'loading' };
   const $ = id => document.getElementById(id);
   function node(tag, cls, text) {
     const el = document.createElement(tag); if (cls) el.className = cls;
@@ -21,39 +21,54 @@
       data.trips.every(t => data.stops[t.fromStop] && data.stops[t.toStop] && Array.isArray(t.serviceIds) && t.serviceIds.every(s => data.services[s]));
   }
   function cachedData() { try { const d = JSON.parse(read('schedule-v3')); return validData(d) ? d : null; } catch (_) { return null; } }
+  function updateMessage() {
+    if (navigator.onLine === false) return 'Brak internetu. Wyświetlamy zapisany rozkład.';
+    if (state.updateState === 'unavailable') return 'Nie udało się zaktualizować rozkładu. Wyświetlamy zapisane dane — spróbuj ponownie później.';
+    return '';
+  }
   async function requestData(url) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
     try {
       const response = await fetch(url, { cache: 'no-store', signal: controller.signal });
       if (!response.ok) throw new Error('HTTP ' + response.status);
+      const type = response.headers.get('content-type') || '';
+      if (type.includes('text/html')) throw new Error('Serwer zwrócił stronę zamiast rozkładu');
       const d = await response.json();
       if (!validData(d)) throw new Error('Nieobsługiwany format rozkładu');
       return d;
     } finally { clearTimeout(timeout); }
   }
+  let loadSequence = 0;
   async function loadData() {
+    const sequence = ++loadSequence;
     $('refresh-btn').disabled = true;
     $('load-error').hidden = true;
+    state.updateState = 'loading';
     const native = window.Capacitor && window.Capacitor.isNativePlatform();
     const remote = window.APP_DATA_URL || '';
-    // Show the saved/bundled timetable immediately; a slow hosting request must
-    // not leave the phone on an empty screen.
-    state.data = cachedData();
-    if (!state.data && native) {
-      try { state.data = await requestData('data.json'); } catch (_) { /* Retry below. */ }
+    let initial = state.data || cachedData();
+    if (!initial && native) {
+      try { initial = await requestData('data.json'); } catch (_) { /* Retry below. */ }
     }
-    if (state.data) { state.offline = !navigator.onLine; render(); }
+    if (sequence !== loadSequence) return;
+    state.data = initial;
+    if (state.data) render();
     try {
-      state.data = await requestData(native && remote ? remote : 'data.json');
-      state.offline = !navigator.onLine;
-      save('schedule-v3', JSON.stringify(state.data));
+      const latest = await requestData(native && remote ? remote : 'data.json');
+      if (sequence !== loadSequence) return;
+      state.data = latest;
+      state.updateState = 'updated';
+      save('schedule-v3', JSON.stringify(latest));
     } catch (_) {
-      state.data = state.data || cachedData();
-      if (!state.data) {
-        try { state.data = await requestData('data.json'); } catch (_) { /* Show retry below. */ }
+      if (sequence !== loadSequence) return;
+      let fallback = state.data || cachedData();
+      if (!fallback) {
+        try { fallback = await requestData('data.json'); } catch (_) { /* Show retry below. */ }
       }
-      state.offline = true;
+      if (sequence !== loadSequence) return;
+      state.data = fallback;
+      state.updateState = 'unavailable';
     }
     $('refresh-btn').disabled = false;
     $('load-error').hidden = !!state.data;
@@ -89,7 +104,6 @@
     if (journey.kind === 'transfer') {
       details.appendChild(node('p', '', `Pierwszy autobus: PKS ${first.line}. Przyjazd do Głogowa ${Planner.clock(first.arrivalMinute)}.`));
       details.appendChild(node('p', '', `Dalej: PKS ${journey.legs[1].line}, ${journey.transferMinutes} min na przesiadkę. Godziny potwierdzone na stronie PKS.`));
-    } else {
     }
     const label = Services.tripLabel(first, state.data.services);
     if (label && !label.includes('GTFS')) details.appendChild(node('p', '', label));
@@ -118,14 +132,15 @@
     const countForms = { one: 'połączenie', few: 'połączenia', many: 'połączeń', other: 'połączenia' };
     $('result-count').textContent = `${journeys.length} ${countForms[new Intl.PluralRules('pl').select(journeys.length)]}`;
     $('results-title').textContent = cityNames[from] + ' → ' + cityNames[to];
-    $('connection-status').hidden = !state.offline && navigator.onLine;
-    $('connection-status').textContent = 'Brak połączenia z rozkładem online. Pokazujemy ostatnio zapisane dane.';
+    const message = updateMessage();
+    $('connection-status').hidden = !message;
+    $('connection-status').textContent = message;
     const meta = state.data.meta;
     const outside = state.date < meta.pksValidFrom || state.date > meta.pksValidUntil;
     const schoolOutside = state.date > Calendar.knownRangeEnd();
     $('validity-note').hidden = !outside && !schoolOutside;
     $('validity-note').textContent = outside ? `Dla tego dnia nie mamy potwierdzonego rozkładu PKS. Dostępny GTFS obejmuje ${meta.pksValidFrom} – ${meta.pksValidUntil}. Widoczne mogą być wyłącznie ręczne wpisy Ekspres Bus.` : 'Dla tej daty kalendarz szkolny wymaga aktualizacji. Kursy szkolne mogą być niepełne.';
-    $('data-status').textContent = `Rozkład PKS ważny do ${meta.pksValidUntil}.`;
+    $('data-status').textContent = `Aktualizacja: ${(meta.pksLastUpdated || "").slice(0, 10)} · rozkład ważny do ${meta.pksValidUntil}.`;
   }
   document.addEventListener('DOMContentLoaded', () => {
     try {
@@ -168,7 +183,7 @@
     let installPrompt;
     window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; $('install-btn').hidden = false; });
     $('install-btn').onclick = async () => { if (installPrompt) { await installPrompt.prompt(); installPrompt = null; $('install-btn').hidden = true; } };
-    window.addEventListener('online', () => { if (state.data) render(); });
+    window.addEventListener('online', loadData);
     window.addEventListener('offline', () => { if (state.data) render(); });
     if ('serviceWorker' in navigator && !native) navigator.serviceWorker.register('sw.js').catch(() => { /* HTTP/non-support: online mode still works. */ });
     loadData();

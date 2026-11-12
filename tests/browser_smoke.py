@@ -1,6 +1,7 @@
 """Smoke test for the simplified site and the same interface used by the APK."""
 import json
 import os
+import time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -86,18 +87,42 @@ with sync_playwright() as p:
     page.wait_for_selector('.trip',timeout=3000)
     assert page.locator('#info-btn').is_hidden()
     assert len(held)==1
-    held[0].fulfill(json=json.loads(Path('data.json').read_text()),headers={'access-control-allow-origin':'*'})
+    # Reconnecting starts a fresh attempt. An older failed request must not
+    # overwrite the successful state of the new attempt.
+    with page.expect_request(remote_url):
+        page.evaluate('window.dispatchEvent(new Event("online"))')
+    deadline=time.monotonic()+3
+    while len(held)<2 and time.monotonic()<deadline:page.wait_for_timeout(20)
+    assert len(held)==2
+    held[1].fulfill(json=json.loads(Path('data.json').read_text()),headers={'access-control-allow-origin':'*'})
+    page.wait_for_function("!document.querySelector('#refresh-btn').disabled")
+    held[0].fulfill(status=503,body='unavailable')
     page.wait_for_load_state('networkidle')
+    assert page.locator('#connection-status').is_hidden()
     context.unroute(remote_url)
     context.route(remote_url,lambda route:route.fulfill(status=503,body='unavailable'))
     page.reload(wait_until='networkidle')
     page.locator('#date-picker').fill('2026-11-12');page.locator('#date-picker').dispatch_event('change')
     assert page.locator('.trip--transfer').count()==2
     assert page.locator('#connection-status').is_visible()
+    assert 'Nie udało się zaktualizować' in page.locator('#connection-status').inner_text()
+    assert 'Brak internetu' not in page.locator('#connection-status').inner_text()
+    # A hosting browser-check HTML page is also a failed update, not no Internet.
+    context.unroute(remote_url)
+    context.route(remote_url,lambda route:route.fulfill(status=200,content_type='text/html',body='<html>Browser verification</html>'))
+    page.locator('#refresh-btn').click()
+    page.wait_for_function("!document.querySelector('#refresh-btn').disabled")
+    assert 'Nie udało się zaktualizować' in page.locator('#connection-status').inner_text()
+    assert page.locator('.trip--transfer').count()==2
+    context.unroute(remote_url)
+    context.route(remote_url,lambda route:route.fulfill(json=json.loads(Path('data.json').read_text())))
+    page.evaluate('window.dispatchEvent(new Event("online"))')
+    page.wait_for_function("!document.querySelector('#refresh-btn').disabled")
+    assert page.locator('#connection-status').is_hidden()
     page.locator('#about-btn').click()
     assert page.locator('#install-help').is_hidden()
     browser.close()
-    print('PASS: native cold start does not wait for hosting; legacy cache migration and saved schedule fallback (mocked HTTPS)')
+    print('PASS: native cold start, separate server/network errors, HTML challenge fallback, reconnect retry and concurrent request ordering (mocked HTTPS)')
 
 with sync_playwright() as p:
     browser=p.chromium.launch(**launch)

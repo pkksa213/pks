@@ -1,7 +1,7 @@
 {
-  "version": "1.0.1",
-  "file": "ranizow-1.0.1.apk",
-  "sha256": "5b83560ea2e31c9d3ad310e83b65a7695bc10f8e3dc690cd65930e67900a09c5",
+  "version": "1.0.2",
+  "file": "ranizow-1.0.2.apk",
+  "sha256": "1f7f74336cadba28dee6bfeeccc5a6ff46857cd99d53a0523e9caaf7a67d7d05",
   "minAndroid": "7.0",
   "minWebView": 80
 }

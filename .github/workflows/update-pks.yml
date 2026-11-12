@@ -62,7 +62,7 @@ jobs:
               -T "$file" "ftp://${FTP_HOST}${FTP_REMOTE_DIR%/}/$file"
           done
           # Verify the uploaded bytes without printing FTP credentials.
-          for file in index.html data.json schedule.php downloads/ranizow-1.0.1.apk; do
+          for file in index.html data.json schedule.php downloads/ranizow-1.0.2.apk; do
             curl --fail --silent --show-error \
               -u "${FTP_USER}:${FTP_PASS}" \
               "ftp://${FTP_HOST}${FTP_REMOTE_DIR%/}/$file" -o /tmp/ranizow-upload-check
