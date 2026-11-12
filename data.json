@@ -5,7 +5,7 @@
     "ekspresBusUpdated": "2026-08-20",
     "pksDataStatus": "live",
     "pksNote": "Oficjalny GTFS PKS. Przesiadki wyliczane z godzin; nie są gwarantowane przez przewoźnika.",
-    "pksLastUpdated": "2026-11-12T12:34:39Z",
+    "pksLastUpdated": "2026-11-12T12:54:54Z",
     "schemaVersion": 2,
     "pksSource": "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip",
     "pksValidFrom": "2026-10-31",
