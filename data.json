@@ -5,7 +5,7 @@
     "ekspresBusUpdated": "2026-08-20",
     "pksDataStatus": "live",
     "pksNote": "GTFS uzupełniony oficjalnymi oznaczeniami kursowania i czasami postojów PKS.",
-    "pksLastUpdated": "2026-11-12T13:40:42Z",
+    "pksLastUpdated": "2026-11-12T13:53:42Z",
     "schemaVersion": 2,
     "pksSource": "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip",
     "pksValidFrom": "2026-11-07",
