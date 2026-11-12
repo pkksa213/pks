@@ -16,6 +16,7 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.request import urlopen, Request
+from pks_official import apply_official
 
 # ============================== KONFIGURACJA ==============================
 
@@ -220,11 +221,13 @@ def main():
     parser = argparse.ArgumentParser(description="Importuj PKS i odcinki do przesiadek w Głogowie.")
     parser.add_argument("--gtfs-file", type=Path, help="Lokalny plik ZIP zamiast pobierania")
     parser.add_argument("--output", type=Path, default=DATA_JSON_PATH)
+    parser.add_argument("--official-cache-dir", type=Path, help="Katalog zapisanych stron PKS do powtarzalnych testów")
     args = parser.parse_args()
     raw = args.gtfs_file.read_bytes() if args.gtfs_file else None
     zf = zipfile.ZipFile(io.BytesIO(raw)) if raw else fetch_gtfs_zip(GTFS_URL)
     data = json.loads(args.output.read_text(encoding="utf-8"))
     data = import_feed(zf, data)
+    data = apply_official(data, args.official_cache_dir)
     data["meta"]["pksFeedSha256"] = hashlib.sha256(zf.fp.getvalue()).hexdigest()
     # Replace only after a successful complete import.
     tmp = args.output.with_suffix(".json.tmp")

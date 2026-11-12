@@ -1,4 +1,4 @@
-/** Routing over verified GTFS segments. Times are minutes on the departure date. */
+/** One departure list. Only the two connections verified on the PKS website. */
 const Planner = (() => {
   function minutes(time) {
     if (!time) return null;
@@ -10,53 +10,42 @@ const Planner = (() => {
     const n = ((value % 1440) + 1440) % 1440;
     return `${String(Math.floor(n / 60)).padStart(2, '0')}:${String(n % 60).padStart(2, '0')}${day > 0 ? ` (+${day} dzień)` : ''}`;
   }
-  function activeLegs(data, iso, includeNextDay) {
+  function activeLegs(data, iso) {
     const result = [];
-    const offsets = includeNextDay ? [-1, 0, 1] : [-1, 0];
-    offsets.forEach(offset => {
+    [-1, 0].forEach(offset => {
       const serviceDate = Calendar.toISO(Calendar.addDays(Calendar.fromISO(iso), offset));
       data.trips.forEach(trip => {
         if (!Services.tripRunsOnDate(trip, data.services, serviceDate)) return;
         const departureMinute = minutes(trip.time) + offset * 1440;
-        if (departureMinute < 0 || departureMinute >= (includeNextDay ? 2880 : 1440)) return;
+        if (departureMinute < 0 || departureMinute >= 1440) return;
         const arrivalMinute = trip.arrivalTime ? minutes(trip.arrivalTime) + offset * 1440 : null;
         result.push(Object.assign({}, trip, { departureMinute, arrivalMinute, serviceDate }));
       });
     });
     return result;
   }
-  function find(data, iso, from, to, options) {
-    const opts = Object.assign({ mode: 'all', minTransfer: 5, maxTransfer: 45 }, options);
-    const legs = activeLegs(data, iso, true);
+  function find(data, iso, from, to) {
     if (from === 'glogow' && to === 'ranizow') return [];
-    const departures = legs.filter(t => t.fromCity === from && t.departureMinute < 1440);
-    const direct = departures.filter(t => t.toCity === to).map(t => ({
+    const legs = activeLegs(data, iso);
+    const journeys = legs.filter(t => t.fromCity === from && t.toCity === to).map(t => ({
       id: `${t.id}-${t.serviceDate}`, kind: 'direct', legs: [t],
       departureMinute: t.departureMinute, arrivalMinute: t.arrivalMinute,
     }));
-    let transfers = [];
     if (from === 'ranizow' && to === 'rzeszow') {
-      const firstLegs = departures.filter(t => t.toCity === 'glogow' && t.arrivalMinute !== null);
-      const secondLegs = legs.filter(t => t.fromCity === 'glogow' && t.toCity === to);
-      firstLegs.forEach(a => {
-        // Do not recommend getting off a bus that already goes to the destination.
-        if (direct.some(j => j.legs[0].gtfsTripId === a.gtfsTripId && a.gtfsTripId)) return;
-        const candidates = secondLegs.filter(b => {
-          const wait = b.departureMinute - a.arrivalMinute;
-          return a.toStop === b.fromStop && a.gtfsTripId !== b.gtfsTripId &&
-            b.arrivalMinute !== null && wait >= opts.minTransfer && wait <= opts.maxTransfer;
-        }).sort((a, b) => a.arrivalMinute - b.arrivalMinute || a.departureMinute - b.departureMinute);
-        if (candidates.length) {
-          const b = candidates[0];
-          transfers.push({ id: `${a.id}-${b.id}-${a.serviceDate}`, kind: 'transfer', legs: [a, b],
-            departureMinute: a.departureMinute, arrivalMinute: b.arrivalMinute,
-            transferMinutes: b.departureMinute - a.arrivalMinute });
-        }
+      (data.connections || []).forEach(connection => {
+        const a = legs.find(t => t.id === connection.firstTripId);
+        const second = connection.secondLeg;
+        if (!a || !second || !Services.tripRunsOnDate(second, data.services, a.serviceDate)) return;
+        const offset = a.serviceDate === iso ? 0 : -1440;
+        const b = Object.assign({}, second, { serviceDate: a.serviceDate,
+          departureMinute: minutes(second.time) + offset, arrivalMinute: minutes(second.arrivalTime) + offset });
+        if (a.toStop !== b.fromStop || a.arrivalMinute === null || b.departureMinute < a.arrivalMinute || b.arrivalMinute < b.departureMinute) return;
+        journeys.push({ id: connection.id + '-' + a.serviceDate, kind: 'transfer', legs: [a, b],
+          departureMinute: a.departureMinute, arrivalMinute: b.arrivalMinute,
+          transferMinutes: b.departureMinute - a.arrivalMinute });
       });
-
     }
-    return (opts.mode === 'direct' ? direct : opts.mode === 'transfer' ? transfers : direct.concat(transfers))
-      .sort((a, b) => a.departureMinute - b.departureMinute || (a.arrivalMinute || Infinity) - (b.arrivalMinute || Infinity));
+    return journeys.sort((a, b) => a.departureMinute - b.departureMinute);
   }
   return { minutes, clock, find };
 })();

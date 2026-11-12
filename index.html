@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Raniżów · rozkład jazdy</title>
-<meta name="description" content="Raniżów – Rzeszów. Autobusy bezpośrednie i przesiadki w Głogowie Małopolskim, także offline.">
+<meta name="description" content="Rozkład Raniżów – Rzeszów i Raniżów – Głogów. Wszystkie odjazdy na jednej liście.">
 <meta name="theme-color" content="#245447">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -16,54 +16,49 @@
 <body>
 <div class="app-shell">
 <header class="site-header">
-  <div class="brand"><span class="brand-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="16" rx="3"/><path d="M5 10h14M8 19v2m8-2v2M9 6h6"/><circle cx="9" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg></span><span>RANIŻÓW <span class="brand-light">/ W DROGĘ</span></span></div>
-  <button id="info-btn" class="icon-btn" aria-label="O aplikacji i instalowanie">i</button>
+  <div><h1>Rozkład jazdy</h1><p>Raniżów · Rzeszów · Głogów</p></div>
+  <button id="info-btn" class="download-link">Pobierz aplikację</button>
 </header>
 <main>
-  <section class="intro"><p class="eyebrow">TWÓJ CODZIENNY ROZKŁAD</p><h1>Bliżej celu.</h1><p>Do Rzeszowa. Do domu. Po drodze Głogów.</p></section>
-  <section id="download-card" class="download-card" aria-labelledby="download-title">
-    <div><p class="eyebrow">ROZKŁAD W TELEFONIE</p><h2 id="download-title">Zabierz go ze sobą.</h2><p>Te same połączenia, także bez internetu.</p></div>
-    <a id="download-apk" class="primary-btn download-btn" href="downloads/ranizow-1.0.0.apk" download="ranizow-1.0.0.apk">Pobierz na Androida · APK</a>
-    <button id="ios-install-btn" class="ios-install-btn">Zainstaluj na iPhonie</button>
-    <p class="download-note">Android 7+ z aktualnym WebView. Po pobraniu otwórz APK i zezwól przeglądarce na instalację. Na iPhonie: Safari → Udostępnij → Do ekranu początkowego.</p>
-  </section>
-  <section class="search-panel" aria-label="Zaplanuj podróż">
-    <label class="field-label" for="route-picker">TRASA</label>
-    <select id="route-picker"><option value="ranizow_rzeszow">Raniżów ↔ Rzeszów</option><option value="ranizow_glogow">Raniżów → Głogów Młp.</option><option value="glogow_rzeszow">Głogów Młp. ↔ Rzeszów</option></select>
+  <section class="search-panel" aria-label="Wybierz trasę i dzień">
+    <label for="route-picker" class="field-label">Trasa</label>
+    <select id="route-picker"><option value="ranizow_rzeszow">Raniżów ↔ Rzeszów</option><option value="ranizow_glogow">Raniżów → Głogów</option></select>
     <div class="direction-switch" role="group" aria-label="Kierunek">
-      <button id="outbound" class="dir-btn is-active" aria-pressed="true"></button>
-      <button id="inbound" class="dir-btn" aria-pressed="false"></button>
+      <button id="outbound" class="dir-btn is-active" aria-pressed="true">Do Rzeszowa</button>
+      <button id="inbound" class="dir-btn" aria-pressed="false">Do Raniżowa</button>
     </div>
     <div class="date-nav">
       <button id="prev-day" class="nav-arrow" aria-label="Poprzedni dzień">‹</button>
       <label class="date-display" for="date-picker"><span id="date-label">Wybierz dzień</span><input type="date" id="date-picker" aria-label="Data podróży"></label>
       <button id="next-day" class="nav-arrow" aria-label="Następny dzień">›</button>
     </div>
-    <button id="today-btn" class="today-btn">Wróć do dziś</button>
-    <div id="transfer-options" class="filters">
-      <label for="journey-mode">Połączenia<select id="journey-mode"><option value="all">Wszystkie</option><option value="direct">Bezpośrednie</option><option value="transfer">Z przesiadką</option></select></label>
-      <label for="transfer-min">Czas na przesiadkę<select id="transfer-min"><option value="5">min. 5 minut</option><option value="10">min. 10 minut</option><option value="15">min. 15 minut</option></select></label>
-      <label class="wait-filter" for="transfer-max">Maksymalne oczekiwanie<select id="transfer-max"><option value="30">30 minut</option><option value="45" selected>45 minut</option><option value="90">90 minut</option></select></label>
-    </div>
+    <div class="day-row"><span id="day-type"></span><button id="today-btn" class="text-btn">Dzisiaj</button></div>
   </section>
-  <p id="connection-status" class="status-line" role="status"></p>
+  <p id="connection-status" class="notice" role="status" hidden></p>
   <p id="validity-note" class="notice" hidden></p>
   <p id="load-error" class="notice notice--error" role="alert" hidden>Nie udało się wczytać rozkładu. <button id="retry-btn">Spróbuj ponownie</button></p>
   <div class="results-heading"><h2 id="results-title">Odjazdy</h2><span id="result-count" aria-live="polite"></span></div>
-  <p id="transfer-note" class="transfer-note">Przesiadki: Kolejowa, Centrum Przesiadkowe w Głogowie. Maks. 45 min oczekiwania. Przewoźnik nie gwarantuje skomunikowania.</p>
   <ul id="trip-list" class="trip-list" aria-live="polite"><li class="empty-state">Wczytuję rozkład…</li></ul>
   <noscript><p class="notice">Włącz JavaScript, aby zobaczyć rozkład jazdy.</p></noscript>
 </main>
-<footer class="site-footer"><div class="footer-brand">Raniżów ↔ Rzeszów</div><p id="data-status"></p><button id="refresh-btn" class="text-btn">Odśwież rozkład</button><p>Godziny planowe · bez śledzenia na żywo<br>Sprawdź przystanek i ograniczenia kursowania przed podróżą.</p></footer>
+<footer class="site-footer"><p id="data-status"></p><button id="refresh-btn" class="text-btn">Odśwież rozkład</button><p>Godziny planowe. Przesiadki nie są gwarantowane.</p><button id="about-btn" class="text-btn">Informacje o rozkładzie</button></footer>
 </div>
 <section id="info-panel" class="modal" role="dialog" aria-modal="true" aria-labelledby="info-title" hidden>
  <div class="modal-card"><button id="close-info" class="icon-btn modal-close" aria-label="Zamknij">×</button>
- <p class="eyebrow">ZAWSZE POD RĘKĄ</p><h2 id="info-title">Twój rozkład w telefonie.</h2>
- <p>Ostatnio zapisany rozkład działa także bez internetu. Jego ważność sprawdzisz pod listą kursów.</p>
- <div id="install-help"><h3>Zainstaluj z przeglądarki</h3><p>Android: menu przeglądarki → „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.</p><p>iPhone: Safari → Udostępnij → „Do ekranu początkowego”.</p><button id="install-btn" class="primary-btn" hidden>Zainstaluj aplikację</button></div>
- <h3>Skąd są godziny?</h3><p>PKS: oficjalny GTFS MPK Rzeszów. Ekspres Bus: dane z tabliczki przystankowej, z ręczną korektą — kurs 18:05 został wycofany.</p>
- <p>Przesiadki w Głogowie pokazujemy w kierunku Raniżów → Rzeszów. Powroty Rzeszów → Raniżów są bezpośrednie. Nie oferujemy trasy Głogów → Raniżów.</p>
- <p><a href="privacy.html">Prywatność i dane aplikacji</a></p>
+ <h2 id="info-title">Aplikacja w telefonie</h2>
+ <div id="install-help">
+  <a id="download-apk" class="primary-btn" href="downloads/ranizow-1.0.1.apk" download="ranizow-1.0.1.apk">Pobierz na Androida</a>
+  <p id="android-help">Po pobraniu otwórz plik APK i potwierdź instalację. Android 7+ z aktualnym WebView. Nową wersję możesz zainstalować jako aktualizację.</p>
+  <h3>iPhone</h3><p>Otwórz stronę w Safari, wybierz Udostępnij → <strong>Do ekranu początkowego</strong> → Dodaj.</p>
+  <button id="install-btn" class="primary-btn" hidden>Zainstaluj z przeglądarki</button>
+ </div>
+ <p>Ostatnio zapisany rozkład działa bez internetu.</p>
+ <details><summary>Źródła i dni kursowania</summary>
+  <p>PKS: oficjalny kalendarz GTFS przewoźnika, w tym wyjątki dla konkretnych dat. Ekspres Bus: rozkład z tabliczki i reguły dni roboczych, szkolnych oraz przerw w nauce. Kurs 18:05 został usunięty.</p>
+  <p>Dwie przesiadki do Rzeszowa: Raniżów 08:42 → odjazd z Głogowa 09:06 oraz Raniżów 10:35 → odjazd z Głogowa 11:00. PKS potwierdza oba odjazdy w dni robocze bez świąt; kurs 10:35 nie jeździ w wakacje letnie. Przyjazdy do Rzeszowa: 09:34 i 11:28.</p>
+  <p>Powroty Rzeszów → Raniżów pokazujemy bez przesiadek. Nie oferujemy Głogów → Raniżów.</p>
+ </details>
+ <p><a href="privacy.html">Prywatność</a></p>
  </div>
 </section>
 <script src="js/calendar.js"></script>

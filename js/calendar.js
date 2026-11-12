@@ -93,6 +93,7 @@ const Calendar = (() => {
     FIXED_HOLIDAYS.forEach(([m, d]) => {
       set.add(toISO(new Date(Date.UTC(year, m - 1, d))));
     });
+    if (year >= 2025) set.add(`${year}-12-24`); // Wigilia jest dniem ustawowo wolnym od 2025 r.
     const easter = easterSunday(year);
     set.add(toISO(easter));                       // Wielkanoc (niedziela)
     set.add(toISO(addDays(easter, 1)));            // Poniedziałek Wielkanocny
@@ -157,6 +158,10 @@ const Calendar = (() => {
     return false;
   }
 
+  function isSummerBreak(iso) {
+    return SUMMER_BREAKS.some(b => isoInRange(iso, b.start, b.end));
+  }
+
   function isSchoolBreakDaily(iso) {
     if (SUMMER_BREAKS.some(b => isoInRange(iso, b.start, b.end))) return true;
     for (const sy of SCHOOL_YEARS) {
@@ -183,6 +188,6 @@ const Calendar = (() => {
   return {
     toISO, fromISO, addDays, weekdayOf, isoInRange,
     isPublicHoliday, isWeekend, isSchoolDay, isSchoolBreakDaily,
-    knownRangeEnd, describe,
+    knownRangeEnd, describe, isSummerBreak,
   };
 })();

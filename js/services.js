@@ -76,6 +76,8 @@ const Services = (() => {
         if (service.excludeHolidays && Calendar.isPublicHoliday(iso)) return false;
         return true;
       }
+      case 'school_break_workdays':
+        return Calendar.weekdayOf(iso) <= 5 && !Calendar.isPublicHoliday(iso) && !Calendar.isSchoolDay(iso);
       case 'school_days':
         return Calendar.isSchoolDay(iso);
       case 'school_break_daily':
@@ -90,6 +92,8 @@ const Services = (() => {
 
   function serviceRunsOnDate(service, iso) {
     let runs = baseRuns(service, iso);
+    if ((service.startDate && iso < service.startDate) || (service.endDate && iso > service.endDate)) runs = false;
+    if (runs && service.excludeSummer && Calendar.isSummerBreak(iso)) runs = false;
 
     if (runs && Array.isArray(service.removeSpecial)) {
       if (service.removeSpecial.some(key => matchesSpecial(iso, key))) runs = false;
@@ -106,6 +110,7 @@ const Services = (() => {
   // Kurs jedzie, jeśli JAKAKOLWIEK z jego usług (OR) mówi "tak".
   // To odwzorowuje łączone oznaczenia typu "DH" na tabliczkach.
   function tripRunsOnDate(trip, services, iso) {
+    if (trip.calendarOverride) return serviceRunsOnDate(trip.calendarOverride, iso);
     return trip.serviceIds.some(id => {
       const svc = services[id];
       if (!svc) {
@@ -121,6 +126,7 @@ const Services = (() => {
   // Usługi typu "weekly" bez ograniczeń (7/7, brak wykluczeń) są pomijane —
   // nie ma sensu informować o czymś, co i tak zawsze obowiązuje.
   function tripLabel(trip, services) {
+    if (trip.calendarOverride) return trip.calendarOverride.label || '';
     const labels = trip.serviceIds
       .map(id => services[id])
       .filter(Boolean)

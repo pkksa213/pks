@@ -4,6 +4,8 @@ import importlib.util
 import io
 from pathlib import Path
 import unittest
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import zipfile
 
 spec = importlib.util.spec_from_file_location('importer', Path(__file__).resolve().parents[1] / 'scripts/update_pks_gtfs.py')

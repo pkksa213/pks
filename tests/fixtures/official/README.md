@@ -1,0 +1,1 @@
+Wyciągi publicznych tablic i szczegółów PKS pobrane 12.11.2026 z https://pks.rzeszow.pl/. Zachowują tekst oznaczeń i adresy kursów; pomijają nawigację, reklamy i nieużywane przystanki w szczegółach. Okres ważności: 07.11–31.12.2026.

@@ -5,11 +5,11 @@ Ustalony sposób dystrybucji: strona https://ranizowpksibus.free.nf/ — bez Goo
 ## Android
 
 1. Otwórz stronę i wybierz „Pobierz na Androida · APK”.
-2. Po pobraniu otwórz `ranizow-1.0.0.apk`.
+2. Po pobraniu otwórz `ranizow-1.0.1.apk`.
 3. Gdy Android poprosi, zezwól przeglądarce na instalację z tego źródła i potwierdź instalację.
 4. Uruchom aplikację z ekranu telefonu. Ostatni rozkład działa także offline.
 
-Wymagany Android 7.0+ i Android System WebView 80+. Plik jest podpisany kluczem wydania aplikacji. Android może wyświetlić informację, że plik jest pobierany spoza sklepu. Nie wyłączaj Play Protect ani innych mechanizmów weryfikacji. Wersja debug udostępniona wcześniej ma inny podpis; do przejścia z debug na wydanie może być konieczne odinstalowanie poprzedniej wersji.
+Wymagany Android 7.0+ i Android System WebView 80+. Plik jest podpisany tym samym kluczem wydania co wersja 1.0.0. Wersję 1.0.1 zainstaluj nad poprzednią jako aktualizację. Android może wyświetlić informację, że plik jest pobierany spoza sklepu. Nie wyłączaj Play Protect ani innych mechanizmów weryfikacji. Wersja debug udostępniona wcześniej ma inny podpis; do przejścia z debug na wydanie może być konieczne odinstalowanie poprzedniej wersji.
 
 ## iPhone / iPad
 
