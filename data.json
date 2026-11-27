@@ -5,7 +5,7 @@
     "ekspresBusUpdated": "2026-08-20",
     "pksDataStatus": "live",
     "pksNote": "GTFS uzupełniony oficjalnymi oznaczeniami kursowania i czasami postojów PKS.",
-    "pksLastUpdated": "2026-11-26T12:35:16Z",
+    "pksLastUpdated": "2026-11-27T12:21:53Z",
     "schemaVersion": 2,
     "pksSource": "https://www.mpkrzeszow.pl/gtfs-pks/latest.zip",
     "pksValidFrom": "2026-11-21",
@@ -14,7 +14,7 @@
     "ekspresBusWithdrawn": [
       "18:05"
     ],
-    "pksFeedSha256": "2b9c354f6162866de4c48ae5943160956ee1df4fec09f307a9cc4faea2655e5b",
+    "pksFeedSha256": "f026fa1044bae339af2cff647c5d40a0c30b0893005795acdaba87f8c2a48c66",
     "disabledDirections": [
       "glogow_ranizow"
     ],
@@ -6532,7 +6532,7 @@
           "endDate": "2027-01-31",
           "source": "https://pks.rzeszow.pl/"
         },
-        "source": "https://pks.rzeszow.pl/tabliczki-przystankowe,203?opr_kontent=kurs&pkurs=1315;310;7755;0;2026-11-26;13990498;;25;;09:06;;0"
+        "source": "https://pks.rzeszow.pl/tabliczki-przystankowe,203?opr_kontent=kurs&pkurs=1315;310;7755;0;2026-11-27;13990498;;25;;09:06;;0"
       }
     },
     {
@@ -6569,7 +6569,7 @@
           "endDate": "2027-01-31",
           "source": "https://pks.rzeszow.pl/"
         },
-        "source": "https://pks.rzeszow.pl/tabliczki-przystankowe,203?opr_kontent=kurs&pkurs=1315;313;7711;0;2026-11-26;13990498;;25;;11:00;;0"
+        "source": "https://pks.rzeszow.pl/tabliczki-przystankowe,203?opr_kontent=kurs&pkurs=1315;313;7711;0;2026-11-27;13990498;;25;;11:00;;0"
       }
     }
   ]
